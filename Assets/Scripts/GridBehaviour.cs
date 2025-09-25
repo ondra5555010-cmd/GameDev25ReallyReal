@@ -20,13 +20,26 @@ public class GridBehaviour : MonoBehaviour
     {
         if (gridPrefab)
         {
-            GenerateGridFromString(mapLayout);
+            GenerateGridFromString(mapLayout = FlipArrayUpsideDown(mapLayout));
             AssignNeighbours();
         }
         else
         {
             Debug.LogWarning("No grid prefab assigned");
         }
+    }
+    
+    private string[] FlipArrayUpsideDown(string[] original)
+    {
+        int rows = original.Length;
+        string[] flipped = new string[rows];
+
+        for (int i = 0; i < rows; i++)
+        {
+            flipped[i] = original[rows - 1 - i];
+        }
+
+        return flipped;
     }
 
     void GenerateGridFromString(string[] layout)
@@ -50,7 +63,7 @@ public class GridBehaviour : MonoBehaviour
                         new Vector3(
                             leftBottomLocation.x + scale * c,
                             leftBottomLocation.y,
-                            leftBottomLocation.z + scale * r), // row 0 at bottom
+                            leftBottomLocation.z + scale * r),
                         Quaternion.identity);
 
                     tile.transform.SetParent(transform);

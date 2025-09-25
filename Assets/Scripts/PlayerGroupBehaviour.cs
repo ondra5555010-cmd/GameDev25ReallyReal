@@ -21,9 +21,9 @@ public class PlayerGroupBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.numpad7Key.wasPressedThisFrame)
+        if (Keyboard.current.wKey.wasPressedThisFrame)
         {
-            Debug.Log("Numpad 7 pressed");
+            Debug.Log("W pressed");
             if (currentTile.CanMoveNorth)
             {
                 Debug.Log("Moving North");
@@ -35,9 +35,9 @@ public class PlayerGroupBehaviour : MonoBehaviour
             }
         }
 
-        if (Keyboard.current.numpad3Key.wasPressedThisFrame)
+        if (Keyboard.current.sKey.wasPressedThisFrame)
         {
-            Debug.Log("Numpad 3 pressed");
+            Debug.Log("S pressed");
             if (currentTile.CanMoveSouth)
             {
                 Debug.Log("Moving South");
@@ -49,9 +49,9 @@ public class PlayerGroupBehaviour : MonoBehaviour
             }
         }
 
-        if (Keyboard.current.numpad9Key.wasPressedThisFrame)
+        if (Keyboard.current.dKey.wasPressedThisFrame)
         {
-            Debug.Log("Numpad 9 pressed");
+            Debug.Log("D pressed");
             if (currentTile.CanMoveEast)
             {
                 Debug.Log("Moving East");
@@ -63,9 +63,9 @@ public class PlayerGroupBehaviour : MonoBehaviour
             }
         }
 
-        if (Keyboard.current.numpad1Key.wasPressedThisFrame)
+        if (Keyboard.current.aKey.wasPressedThisFrame)
         {
-            Debug.Log("Numpad 1 pressed");
+            Debug.Log("A pressed");
             if (currentTile.CanMoveWest)
             {
                 Debug.Log("Moving West");
@@ -77,6 +77,8 @@ public class PlayerGroupBehaviour : MonoBehaviour
             }
         }
     }
+
+
     
     private void MoveTo(GridStat nextTile)
     {
