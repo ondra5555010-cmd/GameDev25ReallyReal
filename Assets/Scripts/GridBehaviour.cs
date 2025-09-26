@@ -16,7 +16,6 @@ public class GridBehaviour : MonoBehaviour
         "XXX",
         "-X-",
         "-X-",
-        "-X-",
         "-S-"
     };
 
