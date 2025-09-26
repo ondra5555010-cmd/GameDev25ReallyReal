@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GridBehaviour : MonoBehaviour
 {
-    public int scale = 1;
+    public float scale = 4.84f;
     public GameObject gridPrefab;
     public Vector3 leftBottomLocation = Vector3.zero;
     public GridStat[,] gridArray;
@@ -11,16 +11,20 @@ public class GridBehaviour : MonoBehaviour
     // Example layout: '-' = empty, 'X' = tile
     private string[] mapLayout = new string[]
     {
-        "-XXXX",
-        "XX-XX",
-        "-S-XX"
+        "XXX",
+        "XXX",
+        "XXX",
+        "-X-",
+        "-X-",
+        "-X-",
+        "-S-"
     };
 
     void Awake()
     {
         if (gridPrefab)
         {
-            GenerateGridFromString(mapLayout = FlipArrayUpsideDown(mapLayout));
+            GenerateGridFromString(FlipArrayUpsideDown(mapLayout));
             AssignNeighbours();
         }
         else

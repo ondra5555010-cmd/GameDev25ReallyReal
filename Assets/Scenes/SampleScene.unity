@@ -1144,7 +1144,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -1169,13 +1169,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.35355335, y: 0.35355356, z: -0.14644668, w: -0.85355335}
-  m_LocalPosition: {x: 10, y: 15, z: -10}
+  m_LocalRotation: {x: -0.46193975, y: 0.33141372, z: -0.19134182, w: -0.80010307}
+  m_LocalPosition: {x: 10, y: 40, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 45, y: 315, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 315, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2002,8 +2002,8 @@ Transform:
   m_GameObject: {fileID: 633742295}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.38, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2665,8 +2665,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 998204994}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7061496, z: -0, w: 0.7080628}
-  m_LocalPosition: {x: -6.1, y: -6.63, z: 3.03}
+  m_LocalRotation: {x: 0, y: -0.7060261, z: 0, w: 0.70818585}
+  m_LocalPosition: {x: 4.8, y: -6.65, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2677,7 +2677,7 @@ Transform:
   - {fileID: 595977185}
   - {fileID: 198880526}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -89.845, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -89.825, z: 0}
 --- !u!1001 &1113422643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3386,7 +3386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f30a86ec936804c801fb4e32d4f94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridBehaviour
-  scale: 1
+  scale: 4.84
   gridPrefab: {fileID: 5923646792870149054, guid: 162abc1a6b2e2b64b8914828e14996cf, type: 3}
   leftBottomLocation: {x: 0, y: 0, z: 0}
   startingTile: {fileID: 0}
