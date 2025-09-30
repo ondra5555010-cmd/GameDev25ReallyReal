@@ -3,20 +3,12 @@ using UnityEngine.InputSystem; // required for new Input System
 
 public class PlayerGroupBehaviour : MonoBehaviour
 {
-    public GridBehaviour gridManager;
+    //public GridBehaviour gridManager;
     public GridStat currentTile;
 
     void Start()
     {
-        if (gridManager.startingTile != null)
-        {
-            currentTile = gridManager.startingTile;
-            transform.position = currentTile.Position;
-        }
-        else
-        {
-            Debug.LogError("GridManager has no starting position set!");
-        }
+        transform.position = currentTile.Position;
     }
 
     void Update()

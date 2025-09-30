@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GridStat : MonoBehaviour
@@ -34,5 +35,13 @@ public class GridStat : MonoBehaviour
                   $"S: {(CanMoveSouth ? "Yes" : "No")}, " +
                   $"E: {(CanMoveEast ? "Yes" : "No")}, " +
                   $"W: {(CanMoveWest ? "Yes" : "No")}");
+    }
+
+    private void Awake()
+    {
+        CanMoveNorth = (northNeighbor != null);
+        CanMoveSouth = (southNeighbor != null);
+        CanMoveEast = (eastNeighbor != null);
+        CanMoveWest = (westNeighbor != null);
     }
 }

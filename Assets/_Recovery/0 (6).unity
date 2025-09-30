@@ -234,7 +234,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: m_Name
-      value: Floor_Flat (0-4)
+      value: Floor_Flat (09)
       objectReference: {fileID: 0}
     - target: {fileID: 8328509268577167364, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -299,39 +299,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 113954464}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
 --- !u!4 &113954462 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378305016021551963, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
   m_PrefabInstance: {fileID: 113954461}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &113954463 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-  m_PrefabInstance: {fileID: 113954461}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &113954464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113954463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf26d1b811b7bf4bade669482c2a5f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridStat
-  x: 0
-  y: 4
-  northNeighbor: {fileID: 1294525618}
-  southNeighbor: {fileID: 2143972377}
-  eastNeighbor: {fileID: 487143936}
-  westNeighbor: {fileID: 0}
 --- !u!1001 &127808135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -819,7 +793,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: m_Name
-      value: Floor_Flat (2-5)
+      value: Floor_Flat (7)
       objectReference: {fileID: 0}
     - target: {fileID: 8328509268577167364, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -884,39 +858,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 217692476}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
 --- !u!4 &217692474 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378305016021551963, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
   m_PrefabInstance: {fileID: 217692473}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &217692475 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-  m_PrefabInstance: {fileID: 217692473}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &217692476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217692475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf26d1b811b7bf4bade669482c2a5f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridStat
-  x: 2
-  y: 5
-  northNeighbor: {fileID: 0}
-  southNeighbor: {fileID: 340834608}
-  eastNeighbor: {fileID: 0}
-  westNeighbor: {fileID: 648169415}
 --- !u!1 &284899266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,7 +1126,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: m_Name
-      value: Floor_Flat (2-4)
+      value: Floor_Flat (6)
       objectReference: {fileID: 0}
     - target: {fileID: 8328509268577167364, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -1243,39 +1191,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 340834608}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
 --- !u!4 &340834606 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378305016021551963, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
   m_PrefabInstance: {fileID: 340834605}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &340834607 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-  m_PrefabInstance: {fileID: 340834605}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &340834608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 340834607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf26d1b811b7bf4bade669482c2a5f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridStat
-  x: 2
-  y: 4
-  northNeighbor: {fileID: 217692476}
-  southNeighbor: {fileID: 1991053022}
-  eastNeighbor: {fileID: 0}
-  westNeighbor: {fileID: 487143936}
 --- !u!1001 &351392837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1663,7 +1585,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: m_Name
-      value: Floor_Flat (1-3)
+      value: Floor_Flat (3)
       objectReference: {fileID: 0}
     - target: {fileID: 8328509268577167364, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -1728,39 +1650,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 415717758}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
 --- !u!4 &415717756 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378305016021551963, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
   m_PrefabInstance: {fileID: 415717755}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &415717757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-  m_PrefabInstance: {fileID: 415717755}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &415717758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415717757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf26d1b811b7bf4bade669482c2a5f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridStat
-  x: 3
-  y: 1
-  northNeighbor: {fileID: 487143936}
-  southNeighbor: {fileID: 537334350}
-  eastNeighbor: {fileID: 1991053022}
-  westNeighbor: {fileID: 2143972377}
 --- !u!1 &476929356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1804,7 +1700,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: m_Name
-      value: Floor_Flat (1-4)
+      value: Floor_Flat (10)
       objectReference: {fileID: 0}
     - target: {fileID: 8328509268577167364, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -1869,39 +1765,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 487143936}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
 --- !u!4 &487143934 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378305016021551963, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
   m_PrefabInstance: {fileID: 487143933}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &487143935 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-  m_PrefabInstance: {fileID: 487143933}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &487143936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487143935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf26d1b811b7bf4bade669482c2a5f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridStat
-  x: 4
-  y: 1
-  northNeighbor: {fileID: 648169415}
-  southNeighbor: {fileID: 415717758}
-  eastNeighbor: {fileID: 340834608}
-  westNeighbor: {fileID: 113954464}
 --- !u!1001 &532584413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2023,7 +1893,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: m_Name
-      value: Floor_Flat (1-2)
+      value: Floor_Flat (2)
       objectReference: {fileID: 0}
     - target: {fileID: 8328509268577167364, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -2088,39 +1958,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 537334350}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
 --- !u!4 &537334348 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378305016021551963, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
   m_PrefabInstance: {fileID: 537334347}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &537334349 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-  m_PrefabInstance: {fileID: 537334347}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &537334350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537334349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf26d1b811b7bf4bade669482c2a5f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridStat
-  x: 2
-  y: 1
-  northNeighbor: {fileID: 415717758}
-  southNeighbor: {fileID: 819275539}
-  eastNeighbor: {fileID: 0}
-  westNeighbor: {fileID: 0}
 --- !u!1001 &567811872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2280,7 +2124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63a9d5e9d4d1ee4abe72e75088d5d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  currentTile: {fileID: 787219384}
+  gridManager: {fileID: 1611576104}
+  currentTile: {fileID: 0}
 --- !u!135 &633742297
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2563,7 +2408,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: m_Name
-      value: Floor_Flat (1-5)
+      value: Floor_Flat (11)
       objectReference: {fileID: 0}
     - target: {fileID: 8328509268577167364, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -2628,39 +2473,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 648169415}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
 --- !u!4 &648169413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378305016021551963, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
   m_PrefabInstance: {fileID: 648169412}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &648169414 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-  m_PrefabInstance: {fileID: 648169412}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &648169415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 648169414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf26d1b811b7bf4bade669482c2a5f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridStat
-  x: 5
-  y: 1
-  northNeighbor: {fileID: 0}
-  southNeighbor: {fileID: 487143936}
-  eastNeighbor: {fileID: 217692476}
-  westNeighbor: {fileID: 1294525618}
 --- !u!1001 &733980845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2741,7 +2560,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: m_Name
-      value: Floor_Flat (0-1)
+      value: Floor_Flat
       objectReference: {fileID: 0}
     - target: {fileID: 8328509268577167364, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -2806,39 +2625,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 787219384}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
 --- !u!4 &787219382 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378305016021551963, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
   m_PrefabInstance: {fileID: 787219381}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &787219383 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-  m_PrefabInstance: {fileID: 787219381}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &787219384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 787219383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf26d1b811b7bf4bade669482c2a5f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridStat
-  x: 0
-  y: 1
-  northNeighbor: {fileID: 819275539}
-  southNeighbor: {fileID: 0}
-  eastNeighbor: {fileID: 0}
-  westNeighbor: {fileID: 0}
 --- !u!1001 &817497226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2856,44 +2649,32 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7936834669806457470, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 7936834669806457470, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 7936834669806457470, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 7936834669806457470, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.57
+      value: 10.07
       objectReference: {fileID: 0}
     - target: {fileID: 7936834669806457470, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.71
+      value: 6.63
       objectReference: {fileID: 0}
     - target: {fileID: 7936834669806457470, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.42
+      value: -1.2
       objectReference: {fileID: 0}
     - target: {fileID: 7936834669806457470, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.71140087
+      value: 0.81987673
       objectReference: {fileID: 0}
     - target: {fileID: 7936834669806457470, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000015548197
+      value: 0.000000017919007
       objectReference: {fileID: 0}
     - target: {fileID: 7936834669806457470, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.70278645
+      value: 0.57254016
       objectReference: {fileID: 0}
     - target: {fileID: 7936834669806457470, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000015359879
+      value: 0.000000012513251
       objectReference: {fileID: 0}
     - target: {fileID: 7936834669806457470, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2901,7 +2682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7936834669806457470, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 89.302
+      value: 69.855
       objectReference: {fileID: 0}
     - target: {fileID: 7936834669806457470, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -2931,7 +2712,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: m_Name
-      value: Floor_Flat (1-1)
+      value: Floor_Flat (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8328509268577167364, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -2996,39 +2777,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 819275539}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
 --- !u!4 &819275537 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378305016021551963, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
   m_PrefabInstance: {fileID: 819275536}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &819275538 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-  m_PrefabInstance: {fileID: 819275536}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &819275539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 819275538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf26d1b811b7bf4bade669482c2a5f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridStat
-  x: 1
-  y: 1
-  northNeighbor: {fileID: 537334350}
-  southNeighbor: {fileID: 787219384}
-  eastNeighbor: {fileID: 0}
-  westNeighbor: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -3618,7 +3373,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: m_Name
-      value: Floor_Flat (0-5)
+      value: Floor_Flat (08)
       objectReference: {fileID: 0}
     - target: {fileID: 8328509268577167364, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -3683,39 +3438,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1294525618}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
 --- !u!4 &1294525616 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378305016021551963, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
   m_PrefabInstance: {fileID: 1294525615}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1294525617 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-  m_PrefabInstance: {fileID: 1294525615}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1294525618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294525617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf26d1b811b7bf4bade669482c2a5f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridStat
-  x: 0
-  y: 5
-  northNeighbor: {fileID: 0}
-  southNeighbor: {fileID: 113954464}
-  eastNeighbor: {fileID: 648169415}
-  westNeighbor: {fileID: 0}
 --- !u!1001 &1509508330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3896,6 +3625,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 668735768885291391, guid: 91ad7bf144749b04ab484a680630a040, type: 3}
   m_PrefabInstance: {fileID: 1599170060}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1611576103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611576105}
+  - component: {fileID: 1611576104}
+  m_Layer: 0
+  m_Name: GridManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1611576104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611576103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f30a86ec936804c801fb4e32d4f94a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridBehaviour
+  scale: 4.95
+  gridPrefab: {fileID: 5923646792870149054, guid: 162abc1a6b2e2b64b8914828e14996cf, type: 3}
+  leftBottomLocation: {x: 0, y: 0, z: 0}
+  startingTile: {fileID: 0}
+--- !u!4 &1611576105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611576103}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1688931348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4066,7 +3843,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: m_Name
-      value: Floor_Flat (2-3)
+      value: Floor_Flat (5)
       objectReference: {fileID: 0}
     - target: {fileID: 8328509268577167364, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -4131,39 +3908,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1991053022}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
 --- !u!4 &1991053020 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378305016021551963, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
   m_PrefabInstance: {fileID: 1991053019}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1991053021 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-  m_PrefabInstance: {fileID: 1991053019}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1991053022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1991053021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf26d1b811b7bf4bade669482c2a5f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridStat
-  x: 2
-  y: 3
-  northNeighbor: {fileID: 340834608}
-  southNeighbor: {fileID: 0}
-  eastNeighbor: {fileID: 0}
-  westNeighbor: {fileID: 415717758}
 --- !u!1001 &2017034429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4244,7 +3995,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: m_Name
-      value: Floor_Flat (0-3)
+      value: Floor_Flat (4)
       objectReference: {fileID: 0}
     - target: {fileID: 8328509268577167364, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -4309,39 +4060,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2143972377}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
 --- !u!4 &2143972375 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8378305016021551963, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
   m_PrefabInstance: {fileID: 2143972374}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2143972376 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
-  m_PrefabInstance: {fileID: 2143972374}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2143972377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2143972376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bf26d1b811b7bf4bade669482c2a5f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridStat
-  x: 0
-  y: 3
-  northNeighbor: {fileID: 113954464}
-  southNeighbor: {fileID: 0}
-  eastNeighbor: {fileID: 415717758}
-  westNeighbor: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -4349,5 +4074,6 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
+  - {fileID: 1611576105}
   - {fileID: 633742300}
   - {fileID: 998204995}
