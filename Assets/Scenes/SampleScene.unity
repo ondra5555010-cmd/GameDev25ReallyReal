@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.029503377, g: 0.0315731, b: 0.122641504, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
@@ -1345,7 +1345,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   player: {fileID: 633742300}
-  offset: {x: 10, y: 10, z: -10}
 --- !u!1001 &340834605
 PrefabInstance:
   m_ObjectHideFlags: 0
