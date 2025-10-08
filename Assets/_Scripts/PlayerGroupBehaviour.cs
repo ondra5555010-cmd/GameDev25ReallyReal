@@ -98,9 +98,11 @@ public class PlayerGroupBehaviour : MonoBehaviour
     private void MoveTo(GridStat nextTile)
     {
         _animator.SetBool("IsMoving", true);
-        transform.position = nextTile.Position + offsetFromTileCenter;  // <-- zde zachováme offset
 
-        Debug.Log($"Moved to tile at ({nextTile.x}, {nextTile.y})");
+        currentTile = nextTile;
+        transform.position = currentTile.Position + offsetFromTileCenter;  // <-- zde zachováme offset
+
+        Debug.Log($"Moved to tile at ({currentTile.x}, {currentTile.y})");
         _animator.SetBool("IsMoving", false);
     }
 }

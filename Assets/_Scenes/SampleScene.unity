@@ -1351,7 +1351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbf1b667fff1944b870e05920898983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  player: {fileID: 633742300}
+  player: {fileID: 0}
 --- !u!1001 &340834605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2107,7 +2107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63a9d5e9d4d1ee4abe72e75088d5d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGroupBehaviour
-  currentTile: {fileID: 0}
+  currentTile: {fileID: 787219384}
+  speed: 1
 --- !u!1001 &532584413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2467,6 +2468,7 @@ GameObject:
   - component: {fileID: 633742298}
   - component: {fileID: 633742297}
   - component: {fileID: 633742296}
+  - component: {fileID: 633742301}
   m_Layer: 0
   m_Name: PlayerGroup
   m_TagString: Untagged
@@ -2487,6 +2489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   currentTile: {fileID: 787219384}
+  speed: 1
 --- !u!135 &633742297
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2515,7 +2518,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633742295}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2579,6 +2582,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &633742301
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633742295}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &638341142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2872,19 +2897,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 47bea95aa58031b44bf42f86cd2fc616, type: 3}
   m_PrefabInstance: {fileID: 2122062064}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &711526304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711526303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90b496f41bbad424ca7702c24cd2d064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkeletonController
-  speed: 1
 --- !u!95 &711526305
 Animator:
   serializedVersion: 7
@@ -2907,6 +2919,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &711526307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711526303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63a9d5e9d4d1ee4abe72e75088d5d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerGroupBehaviour
+  currentTile: {fileID: 787219384}
+  speed: 1
 --- !u!1001 &725200342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2978,6 +3004,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 007678578c567b040a990170a76afd2f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1970157604}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 007678578c567b040a990170a76afd2f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1970157605}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 007678578c567b040a990170a76afd2f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1970157607}
   m_SourcePrefab: {fileID: 100100000, guid: 007678578c567b040a990170a76afd2f, type: 3}
 --- !u!1001 &733980845
 PrefabInstance:
@@ -3077,7 +3109,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7564636611156017616, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: m_Name
-      value: Floor_Flat (0-1)
+      value: Floor_Flat (1-0)
       objectReference: {fileID: 0}
     - target: {fileID: 8328509268577167364, guid: e7a79a14190d3d34f93236ba7164d734, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -5026,6 +5058,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGroupBehaviour
   currentTile: {fileID: 0}
+  speed: 1
+--- !u!95 &1970157605
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970157602}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1970157607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970157602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63a9d5e9d4d1ee4abe72e75088d5d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerGroupBehaviour
+  currentTile: {fileID: 787219384}
+  speed: 1
 --- !u!1001 &1991053019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5277,7 +5346,7 @@ PrefabInstance:
       addedObject: {fileID: 711526305}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 47bea95aa58031b44bf42f86cd2fc616, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 711526304}
+      addedObject: {fileID: 711526307}
   m_SourcePrefab: {fileID: 100100000, guid: 47bea95aa58031b44bf42f86cd2fc616, type: 3}
 --- !u!1001 &2143972374
 PrefabInstance:
@@ -5398,5 +5467,5 @@ SceneRoots:
   - {fileID: 998204995}
   - {fileID: 725200342}
   - {fileID: 2122062064}
-  - {fileID: 1744792610}
   - {fileID: 207191988}
+  - {fileID: 1744792610}
