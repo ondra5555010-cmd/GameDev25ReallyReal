@@ -17,6 +17,6 @@ public class SkeletonAI : MonoBehaviour
     
     public void PlayerIsVisible(bool isVisible)
     {
-        animator.SetBool("PlayerIsVisible", isVisible);
+        animator.SetBool("PlayerVisible", isVisible);
     }
 }

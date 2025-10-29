@@ -13,15 +13,17 @@ public class Eyes : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        coneCollider = GetComponent<ConeCollider>();
+       coneCollider = GetComponent<ConeCollider>();
     }
-
+ 
     void CheckVisibility(Collider other)
     {
         if (other.gameObject == player)
         {
             Vector3 position = transform.position;
-            Vector3 direction = (player.transform.position - position).normalized;
+            Vector3 playerPosition = player.transform.position;
+            //playerPosition.y += 1.0f; // Adjust for player height
+            Vector3 direction = (playerPosition - position).normalized;
             Debug.Log("Player Detected");
 
             Ray ray = new Ray(position, direction);
@@ -47,7 +49,6 @@ public class Eyes : MonoBehaviour
         CheckVisibility(other);
         {
             Debug.Log("Player Detected");
-            coneCollider.SetColor(Color.red);
         }
     }
 
