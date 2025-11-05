@@ -54,9 +54,9 @@ public class Eyes : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject == player)
+        CheckVisibility(other);
         {
-            Debug.Log("Player in Sight");
+            Debug.Log("Player Detected");
         }
     }
 

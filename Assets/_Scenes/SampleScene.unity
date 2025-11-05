@@ -4686,7 +4686,19 @@ MonoBehaviour:
   player: {fileID: 516745323}
   PlrayerIsVisible:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1744792616}
+        m_TargetAssemblyTypeName: SkeletonAI, Assembly-CSharp
+        m_MethodName: PlayerIsVisible
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1276978869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4701,7 +4713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ConeCollider
   m_angle: 45
   m_distance: 10
-  m_isTrigger: 0
+  m_isTrigger: 1
   m_isFixScale: 1
 --- !u!1001 &1294525615
 PrefabInstance:
@@ -5202,6 +5214,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: bb83b53305e72b7498fe95a42fca55ae, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1744792616}
+    - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: bb83b53305e72b7498fe95a42fca55ae, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 772654970}
     - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: bb83b53305e72b7498fe95a42fca55ae, type: 3}
       insertIndex: -1
@@ -5283,6 +5298,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1744792616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772654969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23574f65a9ffc05429cf2287eeaf9868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkeletonAI
 --- !u!1001 &1962750782
 PrefabInstance:
   m_ObjectHideFlags: 0
