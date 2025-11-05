@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9151cc2997aff82449c292666dd54ad0
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 20052
+  packageName: Terrain Former
+  packageVersion: 1.7.16
+  assetPath: Assets/Asset Store/TerrainFormer/Editor/Tool.cs
+  uploadId: 455292

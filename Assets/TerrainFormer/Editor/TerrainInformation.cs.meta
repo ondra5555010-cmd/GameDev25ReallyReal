@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 909782574b4029540a54bafc180a56c0
+timeCreated: 1455620050
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 20052
+  packageName: Terrain Former
+  packageVersion: 1.7.16
+  assetPath: Assets/Asset Store/TerrainFormer/Editor/TerrainInformation.cs
+  uploadId: 455292

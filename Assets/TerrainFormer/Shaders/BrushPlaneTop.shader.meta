@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 37846fd452650c54a920eefc1d7abb72
+timeCreated: 1448765770
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 20052
+  packageName: Terrain Former
+  packageVersion: 1.7.16
+  assetPath: Assets/Asset Store/TerrainFormer/Shaders/BrushPlaneTop.shader
+  uploadId: 455292

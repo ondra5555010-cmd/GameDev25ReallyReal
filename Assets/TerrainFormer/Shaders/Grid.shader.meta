@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 74288bf8fb2d3464c8baf5a8f292667a
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 20052
+  packageName: Terrain Former
+  packageVersion: 1.7.16
+  assetPath: Assets/Asset Store/TerrainFormer/Shaders/Grid.shader
+  uploadId: 455292

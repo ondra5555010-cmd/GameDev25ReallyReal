@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a362c02d7a926af4797f38f5d84fb644
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 20052
+  packageName: Terrain Former
+  packageVersion: 1.7.16
+  assetPath: Assets/Asset Store/TerrainFormer/Editor/Shortcut.cs
+  uploadId: 455292

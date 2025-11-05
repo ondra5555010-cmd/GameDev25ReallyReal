@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 490972b0252bf754eaeab45a9af59aed
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 20052
+  packageName: Terrain Former
+  packageVersion: 1.7.16
+  assetPath: Assets/Asset Store/TerrainFormer/Editor/Brush Types/ImageBrush.cs
+  uploadId: 455292

@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 3ecc236ff5e064343ac47c152ebe1b79
+timeCreated: 1513136496
+licenseType: Store
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 20052
+  packageName: Terrain Former
+  packageVersion: 1.7.16
+  assetPath: Assets/Asset Store/TerrainFormer/Editor/PointRotator.cs
+  uploadId: 455292

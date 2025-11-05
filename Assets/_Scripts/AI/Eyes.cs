@@ -28,7 +28,7 @@ public class Eyes : MonoBehaviour
 
             Ray ray = new Ray(position, direction);
             RaycastHit hit;
-            Physics.Raycast(ray, out hit, coneCollider.Distance);
+            Physics.Raycast(ray, out hit, coneCollider.Distance, ~(LayerMask.GetMask("Enemy")));
             Debug.DrawRay(position, direction * coneCollider.Distance, Color.red);
 
             if (hit.collider != null && hit.collider?.gameObject == player)
