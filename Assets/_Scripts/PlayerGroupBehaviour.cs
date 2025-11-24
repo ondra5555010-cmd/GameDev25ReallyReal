@@ -14,7 +14,7 @@ public class PlayerGroupBehaviour : MonoBehaviour
     [SerializeField]
     [Range(0.5f, 10f)]
     // atribut SerializeField umožní nastavit hodnotu v inspektoru, i když je pole private
-    float speed = 2f; //1;
+    float speed = 8f; //1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private bool isMoving = false; // zabrání spouštění pohybu, pokud už postava běží
 
@@ -35,65 +35,22 @@ public class PlayerGroupBehaviour : MonoBehaviour
     void Update()
     {
         if (isMoving) return; // ignoruj vstupy během pohybu
-        
-        if (Keyboard.current.wKey.wasPressedThisFrame)
-        {
-            Debug.Log("W pressed");
-            if (currentTile.CanMoveNorth)
-            {
-                _animator.SetBool("IsMoving", true);
-                Debug.Log("Moving North");
-                MoveTo(currentTile.northNeighbor);
-            }
-            else
-            {
-                Debug.Log("No North neighbor to move to");
-            }
-        }
 
-        if (Keyboard.current.sKey.wasPressedThisFrame)
+        if (Keyboard.current.wKey.wasPressedThisFrame && currentTile.CanMoveNorth)
         {
-            Debug.Log("S pressed");
-            if (currentTile.CanMoveSouth)
-            {
-                _animator.SetBool("IsMoving", true);
-                Debug.Log("Moving South");
-                MoveTo(currentTile.southNeighbor);
-            }
-            else
-            {
-                Debug.Log("No South neighbor to move to");
-            }
+            StartCoroutine(MoveTo(currentTile.northNeighbor));
         }
-
-        if (Keyboard.current.dKey.wasPressedThisFrame)
+        else if (Keyboard.current.sKey.wasPressedThisFrame && currentTile.CanMoveSouth)
         {
-            Debug.Log("D pressed");
-            if (currentTile.CanMoveEast)
-            {
-                _animator.SetBool("IsMoving", true);
-                Debug.Log("Moving East");
-                MoveTo(currentTile.eastNeighbor);
-            }
-            else
-            {
-                Debug.Log("No East neighbor to move to");
-            }
+            StartCoroutine(MoveTo(currentTile.southNeighbor));
         }
-
-        if (Keyboard.current.aKey.wasPressedThisFrame)
+        else if (Keyboard.current.dKey.wasPressedThisFrame && currentTile.CanMoveEast)
         {
-            Debug.Log("A pressed");
-            if (currentTile.CanMoveWest)
-            {
-                _animator.SetBool("IsMoving", true);
-                Debug.Log("Moving West");
-                MoveTo(currentTile.westNeighbor);
-            }
-            else
-            {
-                Debug.Log("No West neighbor to move to");
-            }
+            StartCoroutine(MoveTo(currentTile.eastNeighbor));
+        }
+        else if (Keyboard.current.aKey.wasPressedThisFrame && currentTile.CanMoveWest)
+        {
+            StartCoroutine(MoveTo(currentTile.westNeighbor));
         }
     }
 
@@ -114,6 +71,14 @@ public class PlayerGroupBehaviour : MonoBehaviour
     {
         isMoving = true;
         _animator.SetBool("IsMoving", true);
+
+        // --- ROTACE PODLE SMĚRU ---
+        Vector3 dir = nextTile.Position - currentTile.Position;
+
+        if (dir.x > 0)      transform.rotation = Quaternion.Euler(0, 90, 0);   // East (D)
+        else if (dir.x < 0) transform.rotation = Quaternion.Euler(0, -90, 0);  // West (A)
+        else if (dir.z > 0) transform.rotation = Quaternion.Euler(0, 0, 0);    // North (W)
+        else if (dir.z < 0) transform.rotation = Quaternion.Euler(0, 180, 0);  // South (S) 
 
         Vector3 startPos = transform.position;
         Vector3 endPos = nextTile.Position + offsetFromTileCenter;
