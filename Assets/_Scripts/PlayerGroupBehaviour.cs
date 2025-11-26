@@ -18,7 +18,11 @@ public class PlayerGroupBehaviour : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private bool isMoving = false; // zabrání spouštění pohybu, pokud už postava běží
 
-    private Vector3 offsetFromTileCenter;  // <-- přidáno
+    private Vector3 offsetFromTileCenter;  // offset pro postavy od středu dlaždice
+    public Transform visualRoot; // parent tří hrdinů
+    Vector3 inputDir = Vector3.zero;
+    public Transform[] heroes; // pole tří hrdinů
+
     void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -38,19 +42,29 @@ public class PlayerGroupBehaviour : MonoBehaviour
 
         if (Keyboard.current.wKey.wasPressedThisFrame && currentTile.CanMoveNorth)
         {
+            inputDir = Vector3.forward;
             StartCoroutine(MoveTo(currentTile.northNeighbor));
         }
         else if (Keyboard.current.sKey.wasPressedThisFrame && currentTile.CanMoveSouth)
         {
+            inputDir = Vector3.back;
             StartCoroutine(MoveTo(currentTile.southNeighbor));
         }
         else if (Keyboard.current.dKey.wasPressedThisFrame && currentTile.CanMoveEast)
         {
+            inputDir = Vector3.right;
             StartCoroutine(MoveTo(currentTile.eastNeighbor));
         }
         else if (Keyboard.current.aKey.wasPressedThisFrame && currentTile.CanMoveWest)
-        {
+        {   
+            inputDir = Vector3.left;
             StartCoroutine(MoveTo(currentTile.westNeighbor));
+        }
+
+         if (inputDir != Vector3.zero)
+        {
+            foreach (var hero in heroes)
+                hero.forward = inputDir;
         }
     }
 
@@ -72,14 +86,6 @@ public class PlayerGroupBehaviour : MonoBehaviour
         isMoving = true;
         _animator.SetBool("IsMoving", true);
 
-        // --- ROTACE PODLE SMĚRU ---
-        Vector3 dir = nextTile.Position - currentTile.Position;
-
-        if (dir.x > 0)      transform.rotation = Quaternion.Euler(0, 90, 0);   // East (D)
-        else if (dir.x < 0) transform.rotation = Quaternion.Euler(0, -90, 0);  // West (A)
-        else if (dir.z > 0) transform.rotation = Quaternion.Euler(0, 0, 0);    // North (W)
-        else if (dir.z < 0) transform.rotation = Quaternion.Euler(0, 180, 0);  // South (S) 
-
         Vector3 startPos = transform.position;
         Vector3 endPos = nextTile.Position + offsetFromTileCenter;
         currentTile = nextTile;
@@ -96,6 +102,7 @@ public class PlayerGroupBehaviour : MonoBehaviour
         }
 
         transform.position = endPos; // přesně na cílové dlaždici
+        Debug.Log($"Moved to tile at ({currentTile.x}, {currentTile.y})");
         _animator.SetBool("IsMoving", false);
         isMoving = false;
     }
