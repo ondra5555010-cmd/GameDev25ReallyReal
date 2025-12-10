@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem; // required for new Input System
 using System.Collections;
 
-[RequireComponent(typeof(Animator))]
+//[RequireComponent(typeof(Animator))]
 // kdykoliv nebude na game objectu Animator, Unity ho přidá automaticky
 // pokud je Animator, nic se nestane
 public class PlayerGroupBehaviour : MonoBehaviour
@@ -24,8 +24,9 @@ public class PlayerGroupBehaviour : MonoBehaviour
     public Transform[] heroes; // pole tří hrdinů
 
     void Awake()
-    {
-        _animator = GetComponent<Animator>();
+    {        
+        //_animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
         // zapamatuj si počáteční offset od středu dlaždice
         offsetFromTileCenter = transform.position - currentTile.Position;
         // získáme referenci na Animator, nemusíme ji ani testovat, protože RequireComponent zajistí, že tam bude
