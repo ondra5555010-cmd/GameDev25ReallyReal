@@ -23,6 +23,7 @@ public class BattleUnit : MonoBehaviour
     
     public int maxMovementBudget;
     public int movementBudget;
+    public bool isActionReady = true;
     [HideInInspector] public bool isMoving = false;
     
     public Vector3 floatingTextOffset = new Vector3(0, 6f, 0);
@@ -141,12 +142,15 @@ public class BattleUnit : MonoBehaviour
             actions
         );
     }
-
-
     
-    public void Attack(BattleUnit target)
+    public void Attack(BattleUnit target, bool isFree = false)
     {
         if (target == null) return;
+
+        if (!isFree)
+        {
+            isActionReady = false;
+        }
 
         int d20 = DiceRollManager.Instance.Roll(20);
         int attackRoll = d20 + attackBonus;

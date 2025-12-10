@@ -100,7 +100,7 @@ public class BattleTile : MonoBehaviour
                 Debug.Log("Selecting unit on this tile");
                 sm.SelectUnit(currentUnit);
             }
-            else if (selected != null && selected.playerControlled)
+            else if (selected != null && selected.playerControlled && selected.isActionReady)
             {
                 Debug.Log($"Attacking hostile unit {currentUnit.name} with selected unit {selected.name}");
                 BattleGrid.Instance.MoveToAttack(selected, currentUnit, animate: true);

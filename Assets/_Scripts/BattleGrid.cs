@@ -7,20 +7,17 @@ public class BattleGrid : MonoBehaviour
     public static BattleGrid Instance;
     public bool isAnimating = false;
 
-    
     public int width = 10;
     public int height = 5;
     public float spacing = 4.83f;
     public BattleTile[,] tiles;
-    
+
     public GameObject tilePrefab;
-    //public GameObject floatingTextPrefab;
     public GameObject testUnitModel;
     public GameObject testUnitModelEnemy;
 
     void Awake()
     {
-        // Singleton pattern
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
@@ -42,7 +39,7 @@ public class BattleGrid : MonoBehaviour
                 tiles[x, y] = battleTile;
             }
         }
-        
+
         SpawnUnit<TestUnit>(0, 0);
         SpawnUnit<TestUnit>(0, 1);
         SpawnUnit<TestUnit>(0, 2);
@@ -52,7 +49,7 @@ public class BattleGrid : MonoBehaviour
         SpawnUnit<TestUnit>(11, 3, false, testUnitModelEnemy);
         SpawnUnit<TestUnit>(11, 4, false, testUnitModelEnemy);
 
-        TurnAndUnitsManager.Instance.refreshFactionMovementBudget(TurnAndUnitsManager.Instance.PlayerUnits);
+        TurnAndUnitsManager.Instance.refreshFactionUnits(TurnAndUnitsManager.Instance.PlayerUnits);
     }
 
     public T SpawnUnit<T>(int x, int y, bool isPlayerControlled = true, GameObject model = null) where T : BattleUnit
@@ -68,14 +65,12 @@ public class BattleGrid : MonoBehaviour
 
         GameObject unitObj = new GameObject(typeof(T).Name);
         T unit = unitObj.AddComponent<T>();
-        
-        //unit.floatingTextPrefab = floatingTextPrefab;
 
         tile.AssignUnit(unit);
 
         GameObject unitModel = model != null ? model : testUnitModel;
         unit.Initialize(unitModel, isPlayerControlled);
-        
+
         if (isPlayerControlled)
         {
             UIManager.Instance.PopulateUnits(TurnAndUnitsManager.Instance.PlayerUnits);
@@ -83,7 +78,6 @@ public class BattleGrid : MonoBehaviour
 
         return unit;
     }
-
 
     public void ClearAllAccessible()
     {
@@ -105,7 +99,7 @@ public class BattleGrid : MonoBehaviour
         return n;
     }
 
-    public List<BattleTile> GetReachableTiles(BattleTile start, int movementBudget)
+    public List<BattleTile> GetReachableTiles(BattleTile start, int movementBudget, BattleUnit movingUnit)
     {
         List<BattleTile> reachable = new List<BattleTile>();
         if (start == null) return reachable;
@@ -120,9 +114,9 @@ public class BattleGrid : MonoBehaviour
         {
             var (current, cost) = queue.Dequeue();
             reachable.Add(current);
-            current.setAccessible(); // movement-accessible
+            current.setAccessible();
 
-            if (cost >= movementBudget) continue; // stop moving further from this tile
+            if (cost >= movementBudget) continue;
 
             foreach (var neigh in GetNeighbours(current))
             {
@@ -130,38 +124,38 @@ public class BattleGrid : MonoBehaviour
                 {
                     if (neigh.currentUnit != null)
                     {
-                        if (neigh.IsHostileTile())
-                            neigh.setAccessible(); // mark for attack even beyond budget
-                        // do not enqueue occupied tiles
-                        continue;
+                        // Only mark hostile tiles if the unit has an action ready
+                        if (movingUnit.isActionReady && neigh.IsHostileTile())
+                            neigh.setAccessible();
+                        continue; // occupied tiles can't be moved into
                     }
 
-                    // Valid movement tile
                     visited.Add(neigh);
                     queue.Enqueue((neigh, cost + 1));
                 }
             }
         }
 
-        // After BFS, make sure all hostile neighbors of reachable tiles are marked accessible
-        foreach (var tile in reachable)
+        // After BFS, mark hostile neighbors of reachable tiles if action is ready
+        if (movingUnit.isActionReady)
         {
-            foreach (var neigh in GetNeighbours(tile))
+            foreach (var tile in reachable)
             {
-                if (neigh.currentUnit != null && neigh.IsHostileTile())
-                    neigh.setAccessible();
+                foreach (var neigh in GetNeighbours(tile))
+                {
+                    if (neigh.currentUnit != null && neigh.IsHostileTile())
+                        neigh.setAccessible();
+                }
             }
         }
 
         return reachable;
     }
 
-
-
     public void setupReachableTiles(BattleUnit movingUnit)
     {
         ClearAllAccessible();
-        List<BattleTile> reachable = GetReachableTiles(movingUnit.currentTile, movingUnit.movementBudget);
+        List<BattleTile> reachable = GetReachableTiles(movingUnit.currentTile, movingUnit.movementBudget, movingUnit);
         foreach (BattleTile tile in reachable)
             tile.setAccessible();
     }
@@ -300,27 +294,29 @@ public class BattleGrid : MonoBehaviour
     public bool MoveToAttack(BattleUnit attacker, BattleUnit defender, bool animate = true)
     {
         if (attacker == null || defender == null) return false;
+        if (!attacker.isActionReady) return false; // cannot attack if action is spent
+
         BattleTile defenderTile = defender.currentTile;
         if (defenderTile == null) return false;
 
-        // 1. If already adjacent, attack directly (no movement cost)
+        // Already adjacent
         if (GetNeighbours(defenderTile).Contains(attacker.currentTile))
         {
             StartCoroutine(AttackAfterMovement(attacker, defender));
             return true;
         }
 
-        // 2. Find candidate tiles to move to (adjacent to defender)
+        // Find candidate tiles to move to (adjacent to defender)
         List<BattleTile> candidates = new List<BattleTile>();
         foreach (BattleTile neigh in GetNeighbours(defenderTile))
         {
-            if (neigh.currentUnit != null) continue;   // ignore occupied tiles
+            if (neigh.currentUnit != null) continue;
             candidates.Add(neigh);
         }
 
         if (candidates.Count == 0) return false;
 
-        // 3. Find the reachable candidate tile closest to attacker
+        // Find the reachable candidate tile closest to attacker
         BattleTile bestTile = null;
         int bestDist = int.MaxValue;
         foreach (var tile in candidates)
@@ -333,30 +329,24 @@ public class BattleGrid : MonoBehaviour
             }
         }
 
-        if (bestTile == null) return false; // can't reach any adjacent tile
+        if (bestTile == null) return false;
 
-        // 4. Move attacker to the chosen tile
         if (!MoveUnitTo(attacker, bestTile, false, animate)) return false;
 
-        // 5. Attack after moving (still costs nothing)
         StartCoroutine(AttackAfterMovement(attacker, defender));
 
         return true;
     }
 
-
     private IEnumerator AttackAfterMovement(BattleUnit attacker, BattleUnit defender)
     {
         isAnimating = true;
-    
-        // Wait until attacker finishes moving
+
         while (attacker.isMoving)
             yield return null;
 
-        // Perform combat instead of instant kill
         attacker.Attack(defender);
 
-        // Update reachable tiles
         setupReachableTiles(attacker);
 
         isAnimating = false;
