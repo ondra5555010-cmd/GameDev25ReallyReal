@@ -2426,8 +2426,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.4944024, y: 3.6578605, z: 3.9359255}
-  m_Center: {x: -0.3082688, y: 1.3289303, z: 0.8097396}
+  m_Size: {x: 5, y: 4, z: 4.9}
+  m_Center: {x: 0.25, y: 2, z: 1.2}
 --- !u!4 &516745325
 Transform:
   m_ObjectHideFlags: 0
@@ -6150,10 +6150,10 @@ PrefabInstance:
       addedObject: {fileID: 1744792612}
     - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: bb83b53305e72b7498fe95a42fca55ae, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1744792614}
+      addedObject: {fileID: 1744792617}
     - targetCorrespondingSourceObject: {fileID: -927199367670048503, guid: bb83b53305e72b7498fe95a42fca55ae, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1744792617}
+      addedObject: {fileID: 1744792618}
   m_SourcePrefab: {fileID: 100100000, guid: bb83b53305e72b7498fe95a42fca55ae, type: 3}
 --- !u!4 &1744792611 stripped
 Transform:
@@ -6204,27 +6204,6 @@ CapsuleCollider:
   m_Height: 2.1333551
   m_Direction: 1
   m_Center: {x: 0.17734505, y: 0.96604663, z: 5.7179284e-10}
---- !u!65 &1744792614
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772654969}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1744792616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6259,6 +6238,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &1744792618
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772654969}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.5714283, y: 3.3076925, z: 4.571429}
+  m_Center: {x: 0.35714233, y: 1.1538461, z: -0.3571442}
 --- !u!1 &1882934637
 GameObject:
   m_ObjectHideFlags: 0
