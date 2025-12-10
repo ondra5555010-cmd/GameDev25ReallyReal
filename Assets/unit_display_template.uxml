@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="container" style="flex-grow: 1; border-top-width: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-width: 4px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); background-color: rgb(255, 255, 224);">
+        <ui:Label text="Label" name="unit_name" style="-unity-text-align: middle-center; font-size: 36px; -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0);" />
+        <ui:Label text="Label" name="unit_hp" style="-unity-text-align: middle-center; color: rgb(124, 252, 0); font-size: 36px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0);" />
+    </ui:VisualElement>
+</ui:UXML>

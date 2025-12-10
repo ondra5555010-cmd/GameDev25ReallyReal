@@ -17,6 +17,8 @@ public class BattleTile : MonoBehaviour
     public Color highlightColor = Color.yellow;
     public Color pathfindingColor = Color.green;
     public Color hostileColor = Color.red;
+    public Color enemyHostiletColor = Color.darkRed;
+
 
     public void Initialize(int x, int y)
     {
@@ -29,35 +31,17 @@ public class BattleTile : MonoBehaviour
     public void setAccessible()
     {
         Accessible = true;
-
-        if (IsHostileTile())
-        {
-            tileRenderer.material.color = hostileColor;
-            return;
-        }
-
-        if (isMouseOver)
-        {
-            tileRenderer.material.color = highlightColor;
-            return;
-        }
-
-        tileRenderer.material.color = pathfindingColor;
+        ApplyColorState();
     }
+
 
 
     public void unsetAccessible()
     {
         Accessible = false;
-
-        if (isMouseOver)
-        {
-            tileRenderer.material.color = highlightColor;
-            return;
-        }
-        
-        tileRenderer.material.color = originalColor;
+        ApplyColorState();
     }
+
 
 
     
@@ -67,8 +51,10 @@ public class BattleTile : MonoBehaviour
         {
             return false;
         }
+
         currentUnit = unit;
         unit.currentTile = this;
+        ApplyColorState();
         return true;
     }
 
@@ -79,39 +65,24 @@ public class BattleTile : MonoBehaviour
             currentUnit.currentTile = null;
             currentUnit = null;
         }
+        ApplyColorState();
     }
     
     void OnMouseEnter()
     {
         isMouseOver = true;
-        if (IsHostileTile())
-            tileRenderer.material.color = hostileColor;
-        else
-            tileRenderer.material.color = highlightColor;
-
+        ApplyColorState();
     }
 
     void OnMouseExit()
     {
         isMouseOver = false;
-
-        if (Accessible)
-        {
-            if (currentUnit != null && currentUnit.playerControlled != TurnAndUnitManager.Instance.isPlayerTurn)
-                tileRenderer.material.color = hostileColor; // red if accessible and hostile
-            else
-                tileRenderer.material.color = pathfindingColor; // green if accessible and not hostile
-        }
-        else
-        {
-            tileRenderer.material.color = originalColor; // grey/original if not accessible
-        }
+        ApplyColorState();
     }
-
     
     void OnMouseDown()
     {
-        if (!TurnAndUnitManager.Instance.isPlayerTurn) return;
+        if (!TurnAndUnitsManager.Instance.isPlayerTurn) return;
         
         if (BattleGrid.Instance.isAnimating)
         {
@@ -152,14 +123,9 @@ public class BattleTile : MonoBehaviour
     
     public void MoveUnitHere(BattleUnit unit)
     {
-        /*if (!ForcedMove)
-        {
-            unit.movementBudget -= BattleGrid.Instance.GetBlockedDistance(unit.currentTile, this);
-        }*/
-        
         if (unit.currentTile != null)
             unit.currentTile.currentUnit = null;
-
+        
         AssignUnit(unit);
         unit.UpdatePosition();
     }
@@ -202,9 +168,48 @@ public class BattleTile : MonoBehaviour
     {
         if (currentUnit == null) return false;
 
-        return currentUnit.playerControlled != TurnAndUnitManager.Instance.isPlayerTurn;
+        return currentUnit.playerControlled != TurnAndUnitsManager.Instance.isPlayerTurn;
     }
+    
+    private void ApplyColorState()
+    {
+        bool playerTurn = TurnAndUnitsManager.Instance.isPlayerTurn;
 
+        // If it's not player turn, always revert to original color
+        if (!playerTurn)
+        {
+            tileRenderer.material.color = originalColor;
+            return;
+        }
 
+        // If tile contains the selected unit, always highlight
+        var selected = UnitSelectionManager.Instance.selectedUnit;
+        if (currentUnit != null && selected == currentUnit && Accessible)
+        {
+            tileRenderer.material.color = highlightColor;
+            return;
+        }
 
+        if (isMouseOver)
+        {
+            if (IsHostileTile())
+                tileRenderer.material.color = enemyHostiletColor;
+            else
+                tileRenderer.material.color = highlightColor;
+            
+            return;
+        }
+        
+        if (Accessible)
+        {
+            if (IsHostileTile())
+                tileRenderer.material.color = hostileColor;
+            else
+                tileRenderer.material.color = pathfindingColor;
+
+            return;
+        }
+        
+        tileRenderer.material.color = originalColor;
+    }
 }

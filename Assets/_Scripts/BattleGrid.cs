@@ -14,7 +14,7 @@ public class BattleGrid : MonoBehaviour
     public BattleTile[,] tiles;
     
     public GameObject tilePrefab;
-    public GameObject floatingTextPrefab;
+    //public GameObject floatingTextPrefab;
     public GameObject testUnitModel;
     public GameObject testUnitModelEnemy;
 
@@ -52,7 +52,7 @@ public class BattleGrid : MonoBehaviour
         SpawnUnit<TestUnit>(11, 3, false, testUnitModelEnemy);
         SpawnUnit<TestUnit>(11, 4, false, testUnitModelEnemy);
 
-        TurnAndUnitManager.Instance.refreshFactionMovementBudget(TurnAndUnitManager.Instance.PlayerUnits);
+        TurnAndUnitsManager.Instance.refreshFactionMovementBudget(TurnAndUnitsManager.Instance.PlayerUnits);
     }
 
     public T SpawnUnit<T>(int x, int y, bool isPlayerControlled = true, GameObject model = null) where T : BattleUnit
@@ -69,12 +69,17 @@ public class BattleGrid : MonoBehaviour
         GameObject unitObj = new GameObject(typeof(T).Name);
         T unit = unitObj.AddComponent<T>();
         
-        unit.floatingTextPrefab = floatingTextPrefab;
+        //unit.floatingTextPrefab = floatingTextPrefab;
 
         tile.AssignUnit(unit);
 
         GameObject unitModel = model != null ? model : testUnitModel;
         unit.Initialize(unitModel, isPlayerControlled);
+        
+        if (isPlayerControlled)
+        {
+            UIManager.Instance.PopulateUnits(TurnAndUnitsManager.Instance.PlayerUnits);
+        }
 
         return unit;
     }
@@ -115,30 +120,43 @@ public class BattleGrid : MonoBehaviour
         {
             var (current, cost) = queue.Dequeue();
             reachable.Add(current);
+            current.setAccessible(); // movement-accessible
 
-            if (cost >= movementBudget) continue;
+            if (cost >= movementBudget) continue; // stop moving further from this tile
 
             foreach (var neigh in GetNeighbours(current))
             {
-                if (neigh.currentUnit != null && neigh != start)
-                {
-                    if (neigh.IsHostileTile() && cost + 1 <= movementBudget)
-                        neigh.setAccessible();
-                    continue;
-                }
-
-                if (neigh.currentUnit != null && neigh != start) continue;
-
                 if (!visited.Contains(neigh))
                 {
+                    if (neigh.currentUnit != null)
+                    {
+                        if (neigh.IsHostileTile())
+                            neigh.setAccessible(); // mark for attack even beyond budget
+                        // do not enqueue occupied tiles
+                        continue;
+                    }
+
+                    // Valid movement tile
                     visited.Add(neigh);
                     queue.Enqueue((neigh, cost + 1));
                 }
             }
         }
 
+        // After BFS, make sure all hostile neighbors of reachable tiles are marked accessible
+        foreach (var tile in reachable)
+        {
+            foreach (var neigh in GetNeighbours(tile))
+            {
+                if (neigh.currentUnit != null && neigh.IsHostileTile())
+                    neigh.setAccessible();
+            }
+        }
+
         return reachable;
     }
+
+
 
     public void setupReachableTiles(BattleUnit movingUnit)
     {
@@ -285,55 +303,47 @@ public class BattleGrid : MonoBehaviour
         BattleTile defenderTile = defender.currentTile;
         if (defenderTile == null) return false;
 
-        // 1. Adjacent attack
+        // 1. If already adjacent, attack directly (no movement cost)
         if (GetNeighbours(defenderTile).Contains(attacker.currentTile))
         {
-            if (attacker.movementBudget < 1) return false; // need 1 point to attack
-            attacker.movementBudget -= 1;
             StartCoroutine(AttackAfterMovement(attacker, defender));
             return true;
         }
 
-        // 2. Find candidate tiles to move
+        // 2. Find candidate tiles to move to (adjacent to defender)
         List<BattleTile> candidates = new List<BattleTile>();
         foreach (BattleTile neigh in GetNeighbours(defenderTile))
         {
-            if (neigh.currentUnit != null) continue;
-            if (neigh.IsHostileTile()) continue;
+            if (neigh.currentUnit != null) continue;   // ignore occupied tiles
             candidates.Add(neigh);
         }
 
         if (candidates.Count == 0) return false;
 
-        // 3. Choose best reachable tile
+        // 3. Find the reachable candidate tile closest to attacker
         BattleTile bestTile = null;
         int bestDist = int.MaxValue;
-
         foreach (var tile in candidates)
         {
             int d = GetBlockedDistance(attacker.currentTile, tile);
-            if (d >= 0 && d < bestDist)
+            if (d >= 0 && d < bestDist && d <= attacker.movementBudget)
             {
                 bestDist = d;
                 bestTile = tile;
             }
         }
 
-        if (bestTile == null) return false;
+        if (bestTile == null) return false; // can't reach any adjacent tile
 
-        // 4. Ensure enough movement points for move + attack
-        int totalCost = bestDist + 1;
-        if (attacker.movementBudget < totalCost) return false;
-
-        // 5. Move unit
+        // 4. Move attacker to the chosen tile
         if (!MoveUnitTo(attacker, bestTile, false, animate)) return false;
 
-        // 6. Deduct total cost (move + attack)
-        attacker.movementBudget -= totalCost;
-
+        // 5. Attack after moving (still costs nothing)
         StartCoroutine(AttackAfterMovement(attacker, defender));
+
         return true;
     }
+
 
     private IEnumerator AttackAfterMovement(BattleUnit attacker, BattleUnit defender)
     {

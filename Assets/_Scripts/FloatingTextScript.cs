@@ -5,7 +5,6 @@ public class FloatingTextScript : MonoBehaviour
 {
     public float lifetime = 1.2f;
     public float floatSpeed = 1.2f;
-    public Vector3 initialOffset = new Vector3(0, 1.6f, 0);
     public bool faceCamera = true;
 
     private TextMeshProUGUI tmp;
@@ -18,7 +17,7 @@ public class FloatingTextScript : MonoBehaviour
         cam = Camera.main != null ? Camera.main.transform : null;
     }
 
-    public void Show(string message, Color color, Transform parent = null)
+    public void Show(string message, Color color, Vector3 initialOffset, Transform parent = null)
     {
         tmp.text = message;
         tmp.color = color;

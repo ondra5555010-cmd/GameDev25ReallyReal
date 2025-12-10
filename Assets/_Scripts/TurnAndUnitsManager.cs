@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnAndUnitManager : MonoBehaviour
+public class TurnAndUnitsManager : MonoBehaviour
 {
-    public static TurnAndUnitManager Instance;
+    public static TurnAndUnitsManager Instance;
     public bool isPlayerTurn = true;
     
     public List<BattleUnit> PlayerUnits { get; private set; }
@@ -68,14 +68,14 @@ public class TurnAndUnitManager : MonoBehaviour
             enemy.ReplenishMovementBudget();
 
             // Wait until no animation is running
-            while (BattleGrid.Instance.isAnimating)
+            while (BattleGrid.Instance.isAnimating || UIManager.Instance.isDisplaying)
                 yield return null;
 
             // Perform AI move
             AIMove(enemy);
 
             // Wait for this unit to finish moving
-            while (enemy.isMoving || BattleGrid.Instance.isAnimating)
+            while (enemy.isMoving || BattleGrid.Instance.isAnimating || UIManager.Instance.isDisplaying)
                 yield return null;
         }
 
@@ -110,8 +110,8 @@ public class TurnAndUnitManager : MonoBehaviour
         if (closestPlayer == null) return;
 
         // 2. Attempt to attack first (MoveToAttack handles adjacency)
-        // Only attempt attack if unit has at least 1 movement point left for the attack
-        if (enemy.movementBudget > 0 && grid.MoveToAttack(enemy, closestPlayer, true))
+        // Attack is FREE now, so we do not check movementBudget here.
+        if (grid.MoveToAttack(enemy, closestPlayer, true))
             return;
 
         // 3. Otherwise move toward closest player
@@ -120,13 +120,12 @@ public class TurnAndUnitManager : MonoBehaviour
 
         path.RemoveAt(0); // remove starting tile
 
-        // Reserve 1 movement for a possible attack at the end of the path
-        int moveSteps = Mathf.Min(enemy.movementBudget - 1, path.Count);
+        // Movement costs 1 per tile, so we can move exactly movementBudget number of steps
+        int moveSteps = Mathf.Min(enemy.movementBudget, path.Count);
         if (moveSteps <= 0) return;
 
         List<BattleTile> movePath = path.GetRange(0, moveSteps);
         grid.MoveUnitTo(enemy, movePath[movePath.Count - 1], false, true);
     }
-
 
 }

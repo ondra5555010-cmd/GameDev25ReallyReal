@@ -1,18 +1,22 @@
 using System;
+using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class BattleUnit : MonoBehaviour
 {
     public GameObject unitModel;
-    public GameObject floatingTextPrefab;
+    public object uiDisplay;
+
     public bool playerControlled;
     public BattleTile currentTile;
 
+    public string unitName = "Unit";
     public int armorClass = 10;
     public int attackBonus = 2;
     
     public int damageDie = 6;
-    public int damageDice = 1;
+    public int damageDice = 1; 
     
     public int maxHitPoints = 8;
     public int currentHitPoints;
@@ -20,6 +24,8 @@ public class BattleUnit : MonoBehaviour
     public int maxMovementBudget;
     public int movementBudget;
     [HideInInspector] public bool isMoving = false;
+    
+    public Vector3 floatingTextOffset = new Vector3(0, 6f, 0);
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,31 +40,11 @@ public class BattleUnit : MonoBehaviour
     }
     public void ShowFloatingText(string text, Color color)
     {
-        Debug.Log($"SHOWING FLOATING TEXT: {text.ToUpper()}");
-
-        if (floatingTextPrefab == null) 
-        {
-            Debug.LogWarning("FLOATING TEXT PREFAB IS NULL!");
-            return;
-        }
-
-        // Instantiate the prefab at the unit's position
-        var go = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity);
-
-        // Try to get the FloatingTextScript from root or any child
-        var ft = go.GetComponent<FloatingTextScript>() ?? go.GetComponentInChildren<FloatingTextScript>();
-
-        if (ft != null) 
-        {
-            ft.Show(text, color, transform);
-        }
+        if (UIManager.Instance != null)
+            UIManager.Instance.ShowFloatingText(text, color, transform, floatingTextOffset);
         else
-        {
-            Debug.LogWarning("FLOATING TEXT COMPONENT MISSING ON PREFAB OR ITS CHILDREN!");
-        }
+            Debug.LogWarning("UIManager instance missing!");
     }
-
-
     
     public void UpdatePosition()
     {
@@ -86,19 +72,19 @@ public class BattleUnit : MonoBehaviour
             unitModel.transform.localPosition = Vector3.zero;
         }
         
-        if (TurnAndUnitManager.Instance != null)
+        if (TurnAndUnitsManager.Instance != null)
         {
             if (playerControlled)
             {
-                if (!TurnAndUnitManager.Instance.PlayerUnits.Contains(this))
-                    TurnAndUnitManager.Instance.PlayerUnits.Add(this);
-                Debug.Log(TurnAndUnitManager.Instance.PlayerUnits.Count);
+                if (!TurnAndUnitsManager.Instance.PlayerUnits.Contains(this))
+                    TurnAndUnitsManager.Instance.PlayerUnits.Add(this);
+                Debug.Log(TurnAndUnitsManager.Instance.PlayerUnits.Count);
             }
             else
             {
-                if (!TurnAndUnitManager.Instance.EnemyUnits.Contains(this))
-                    TurnAndUnitManager.Instance.EnemyUnits.Add(this);
-                Debug.Log(TurnAndUnitManager.Instance.EnemyUnits.Count);
+                if (!TurnAndUnitsManager.Instance.EnemyUnits.Contains(this))
+                    TurnAndUnitsManager.Instance.EnemyUnits.Add(this);
+                Debug.Log(TurnAndUnitsManager.Instance.EnemyUnits.Count);
             }
         }
         
@@ -123,43 +109,57 @@ public class BattleUnit : MonoBehaviour
         {
             currentTile.ClearUnit();
         }
+        
         Destroy(gameObject);
+
+        if (playerControlled)
+        {
+            UIManager.Instance.PopulateUnits(TurnAndUnitsManager.Instance.PlayerUnits);
+        }
     }
 
     public void takeDamage(int damage)
     {
         currentHitPoints -= damage;
 
-        ShowFloatingText($"-{damage}", Color.red);
+        var actions = new List<System.Action>();
 
+        // update UI
+        if (uiDisplay is UnitDisplay display)
+            actions.Add(() => display.UpdateHp(this));
+
+        // handle death if HP drops to 0
         if (currentHitPoints <= 0)
-        {
-            currentHitPoints = 0;
-            KillUnit();
-        }
+            actions.Add(() => KillUnit());
+
+        // queue floating text with associated actions
+        UIManager.Instance.ShowFloatingText(
+            $"-{damage}",
+            Color.red,
+            transform,
+            floatingTextOffset,
+            actions
+        );
     }
+
+
     
     public void Attack(BattleUnit target)
     {
         if (target == null) return;
 
-        // Attack roll
         int d20 = DiceRollManager.Instance.Roll(20);
         int attackRoll = d20 + attackBonus;
         bool hit = attackRoll >= target.armorClass;
 
-        // Single line feedback: "Attack 17 vs AC 13"
-        string rollInfo = $"Attack {attackRoll} vs AC {target.armorClass}";
-        Color rollColor = hit ? Color.green : new Color(1f, 0.5f, 0f); // orange
+        Color rollColor = hit ? Color.green : new Color(1f, 0.5f, 0f);
 
-        ShowFloatingText(rollInfo, rollColor);
+        ShowFloatingText($"Attack {attackRoll} vs AC {target.armorClass}", rollColor);
 
         if (!hit) return;
 
-        // Damage roll
         int damage = DiceRollManager.Instance.Roll(damageDie, damageDice);
 
-        // Show damage die used: e.g. "1d6"
         ShowFloatingText($"{damageDice}d{damageDie}", Color.yellow);
 
         target.takeDamage(damage);
