@@ -17,6 +17,7 @@ public class BattleUnit : MonoBehaviour
     
     public int damageDie = 6;
     public int damageDice = 1; 
+    public int attackRange = 1;
     
     public int maxHitPoints = 8;
     public int currentHitPoints;
