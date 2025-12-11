@@ -1,2 +1,17 @@
 fileFormatVersion: 2
 guid: 2e9266e6a9ee38d4281cf6ed476a1013
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - tilePrefab: {instanceID: 0}
+  - wizardPrefab: {fileID: 8119997237303372936, guid: 42d05c48c17be7c40a639ee802a44a40, type: 3}
+  - roguePrefab: {fileID: 402752971504689156, guid: 4d8a772d5b6062744ac5732771164510, type: 3}
+  - clericPrefab: {fileID: 6740112497460240484, guid: 11230467dc4c18140970473505aa18ef, type: 3}
+  - testUnitModel: {instanceID: 0}
+  - testUnitModelEnemy: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -142,6 +142,29 @@ public class BattleUnit : MonoBehaviour
             actions
         );
     }
+    public void Heal(int amount)
+    {
+        if (amount <= 0) return;
+
+        int oldHp = currentHitPoints;
+        currentHitPoints = Mathf.Min(currentHitPoints + amount, maxHitPoints);
+
+        int healedAmount = currentHitPoints - oldHp;
+        if (healedAmount <= 0) return;
+
+        var actions = new List<System.Action>();
+
+        if (uiDisplay is UnitDisplay display)
+            actions.Add(() => display.UpdateHp(this));
+
+        UIManager.Instance.ShowFloatingText(
+            $"+{healedAmount}",
+            Color.green,
+            transform,
+            floatingTextOffset,
+            actions
+        );
+    }
     
     public void Attack(BattleUnit target, bool isFree = false)
     {

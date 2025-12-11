@@ -13,6 +13,12 @@ public class BattleGrid : MonoBehaviour
     public BattleTile[,] tiles;
 
     public GameObject tilePrefab;
+
+    // NEW – hero prefabs
+    public GameObject wizardPrefab;
+    public GameObject roguePrefab;
+    public GameObject clericPrefab;
+
     public GameObject testUnitModel;
     public GameObject testUnitModelEnemy;
 
@@ -39,10 +45,11 @@ public class BattleGrid : MonoBehaviour
                 tiles[x, y] = battleTile;
             }
         }
-
-        SpawnUnit<TestUnit>(0, 0);
-        SpawnUnit<TestUnit>(0, 1);
-        SpawnUnit<TestUnit>(0, 2);
+        
+        var w = SpawnUnit<HeroesWizard>(0, 0, true, wizardPrefab);
+        var r = SpawnUnit<HeroesRogue>(0, 1, true, roguePrefab);
+        var c = SpawnUnit<HeroesCleric>(0, 2, true, clericPrefab);
+    
         SpawnUnit<TestUnit>(11, 0, false, testUnitModelEnemy);
         SpawnUnit<TestUnit>(11, 1, false, testUnitModelEnemy);
         SpawnUnit<TestUnit>(11, 2, false, testUnitModelEnemy);
@@ -68,6 +75,12 @@ public class BattleGrid : MonoBehaviour
 
         tile.AssignUnit(unit);
 
+        if (model == null)
+        {
+            Debug.LogError("SpawnUnit called without a model prefab!");
+            return unit;
+        }
+        
         GameObject unitModel = model != null ? model : testUnitModel;
         unit.Initialize(unitModel, isPlayerControlled);
 
