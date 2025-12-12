@@ -40,6 +40,23 @@ public class UnitSelectionManager : MonoBehaviour
         }
 
         selectedUnit = null;
+        BattleGrid.Instance.isSpecialMove = false;
         BattleGrid.Instance.ClearAllAccessible();
     }
+    
+    private void Update()
+    {
+        HandleSpecialMoveToggle();
+    }
+
+    private void HandleSpecialMoveToggle()
+    {
+        if (selectedUnit == null) return;
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        {
+            selectedUnit.ToggleSpecialMove();
+        }
+    }
+
 }

@@ -10,7 +10,11 @@ public class HeroesRogue : BattleUnit
 
     private void Awake()
     {
-        maxMovementBudget = 6;
+        armorClass = 13;
+        maxHitPoints = 16;
+        maxMovementBudget = 5;
+        damageDie = 4;
+        attackBonus = 5;
         unitName = "Rogue";
     }
 

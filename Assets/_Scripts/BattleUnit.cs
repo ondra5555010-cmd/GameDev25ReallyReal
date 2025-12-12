@@ -192,4 +192,23 @@ public class BattleUnit : MonoBehaviour
 
         target.takeDamage(damage);
     }
+    
+    private void CheckSpecialMoveToggle()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        {
+            ToggleSpecialMove();
+        }
+    }
+
+    public virtual void ToggleSpecialMove()
+    {
+
+    }
+    
+    public virtual void EnactSpecialMove(BattleUnit target)
+    {
+        
+    }
+
 }

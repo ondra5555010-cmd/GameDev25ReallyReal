@@ -6,6 +6,7 @@ public class BattleGrid : MonoBehaviour
 {
     public static BattleGrid Instance;
     public bool isAnimating = false;
+    public bool isSpecialMove = false;
 
     public int width = 10;
     public int height = 5;
@@ -364,4 +365,27 @@ public class BattleGrid : MonoBehaviour
 
         isAnimating = false;
     }
+    
+    public void RangedTargets(bool targetPlayers)
+    {
+        // 1) Reset tile accessibility
+        ClearAllAccessible();
+
+        if (!UnitSelectionManager.Instance.selectedUnit.isActionReady)
+        {
+            return;
+        }
+
+        // 2) Mark tiles containing target-faction units as accessible
+        List<BattleUnit> targets = targetPlayers
+            ? TurnAndUnitsManager.Instance.PlayerUnits
+            : TurnAndUnitsManager.Instance.EnemyUnits;
+
+        foreach (var unit in targets)
+        {
+            if (unit == null || unit.currentTile == null) continue;
+            unit.currentTile.setAccessible();
+        }
+    }
+
 }

@@ -95,6 +95,17 @@ public class BattleTile : MonoBehaviour
         Debug.Log($"MouseDown on tile ({gridX},{gridY})");
         if (currentUnit != null)
         {
+            // 1) Priority: special move mode + accessible tile
+            if (selected != null && selected.isActionReady)
+            {
+                // Only act if selected unit has special move active and tile is accessible
+                if (BattleGrid.Instance.isSpecialMove && Accessible)
+                {
+                    Debug.Log($"Enacting special move on tile ({gridX},{gridY})");
+                    selected.EnactSpecialMove(currentUnit);
+                    return; // stop further processing
+                }
+            }
             if (currentUnit.playerControlled)
             {
                 Debug.Log("Selecting unit on this tile");
