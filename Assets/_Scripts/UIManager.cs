@@ -128,7 +128,7 @@ public class UIManager : MonoBehaviour
         foreach (var unit in units)
         {
             var ve = playerUnitTemplate.CloneTree();
-            var display = new UnitDisplay(ve);
+            var display = new UnitDisplay(ve, unit); // <-- pass the unit here
 
             display.Initialize(unit);
 
@@ -137,6 +137,7 @@ public class UIManager : MonoBehaviour
             unit.uiDisplay = display;
         }
     }
+
     
     public void ShowSelectedUnit(BattleUnit unit)
     {

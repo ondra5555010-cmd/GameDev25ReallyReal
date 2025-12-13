@@ -241,4 +241,23 @@ public class BattleUnit : MonoBehaviour
     {
         
     }
+    
+    void OnMouseEnter()
+    {
+        if (currentTile != null)
+            currentTile.OnMouseEnter();
+    }
+
+    void OnMouseExit()
+    {
+        if (currentTile != null)
+            currentTile.OnMouseExit();
+    }
+
+    void OnMouseDown()
+    {
+        if (currentTile != null)
+            currentTile.OnMouseDown();
+    }
+
 }

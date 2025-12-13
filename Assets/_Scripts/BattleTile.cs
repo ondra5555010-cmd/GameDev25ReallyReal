@@ -68,19 +68,28 @@ public class BattleTile : MonoBehaviour
         ApplyColorState();
     }
     
-    void OnMouseEnter()
+    public void OnMouseEnter()
     {
         isMouseOver = true;
+
+        if (currentUnit != null && currentUnit.uiDisplay is UnitDisplay display)
+            display.SetHighlight();
+
         ApplyColorState();
     }
 
-    void OnMouseExit()
+    public void OnMouseExit()
     {
         isMouseOver = false;
+
+        if (currentUnit != null && currentUnit.uiDisplay is UnitDisplay display)
+            display.ClearHighlight();
+
         ApplyColorState();
     }
+
     
-    void OnMouseDown()
+    public void OnMouseDown()
     {
         if (!TurnAndUnitsManager.Instance.isPlayerTurn) return;
         
