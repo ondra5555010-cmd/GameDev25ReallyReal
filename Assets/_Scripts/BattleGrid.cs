@@ -86,9 +86,9 @@ public class BattleGrid : MonoBehaviour
         unit.Initialize(unitModel, isPlayerControlled);
 
         if (isPlayerControlled)
-        {
-            UIManager.Instance.PopulateUnits(TurnAndUnitsManager.Instance.PlayerUnits);
-        }
+            UIManager.Instance.PopulatePlayerUnits(TurnAndUnitsManager.Instance.PlayerUnits);
+        else
+            UIManager.Instance.PopulateComputerUnits(TurnAndUnitsManager.Instance.EnemyUnits);
 
         return unit;
     }
@@ -235,6 +235,7 @@ public class BattleGrid : MonoBehaviour
             foreach (BattleTile step in path)
                 step.MoveUnitHere(unit);
 
+        unit.RefreshUI();
         return true;
     }
 
@@ -387,5 +388,18 @@ public class BattleGrid : MonoBehaviour
             unit.currentTile.setAccessible();
         }
     }
+    
+    public List<BattleUnit> GetNeighbouringUnits(BattleTile tile)
+    {
+        List<BattleUnit> units = new List<BattleUnit>();
+        if (tile == null) return units;
 
+        foreach (var neigh in GetNeighbours(tile))
+        {
+            if (neigh.currentUnit != null)
+                units.Add(neigh.currentUnit);
+        }
+
+        return units;
+    }
 }

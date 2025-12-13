@@ -9,16 +9,26 @@ public class UIManager : MonoBehaviour
     
     private UIDocument uiDocument;
     private VisualElement root;
-    private VisualElement unitsContainer;
+    private VisualElement playerUnitsContainer;
+    private VisualElement computerUnitsContainer;
+    private VisualElement selectedUnitDisplay;
+    
     public VisualTreeAsset playerUnitTemplate;
 
     public GameObject floatingTextPrefab;
     public float displayDelay = 5f; // time between queued texts
     public bool isDisplaying = false;
     
+    private Label selectedAbilityDescription;
+    private Label selectedName;
+    private Label selectedHp;
+    private Label selectedAC;
+    private Label selectedDmg;
+    private Label selectedAtk;
+    private Label selectedMp;
+    
     private Queue<FloatingTextRequest> queueTextRequest = new();
     
-
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -29,7 +39,17 @@ public class UIManager : MonoBehaviour
         uiDocument = GetComponent<UIDocument>();
         root = uiDocument.rootVisualElement;
 
-        unitsContainer = root.Q<VisualElement>("player_units_display");
+        playerUnitsContainer   = root.Q<VisualElement>("player_units_display");
+        computerUnitsContainer = root.Q<VisualElement>("computer_units_display");
+        selectedUnitDisplay = root.Q<VisualElement>("selected_unit_display");
+        
+        selectedAbilityDescription = selectedUnitDisplay.Q<Label>("special_ability_description");
+        selectedName = selectedUnitDisplay.Q<Label>("unit_name");
+        selectedHp = selectedUnitDisplay.Q<Label>("unit_hp");
+        selectedAC = selectedUnitDisplay.Q<Label>("unit_AC");
+        selectedDmg = selectedUnitDisplay.Q<Label>("unit_dmg");
+        selectedAtk = selectedUnitDisplay.Q<Label>("unit_attk");
+        selectedMp = selectedUnitDisplay.Q<Label>("unit_mp");
     }
     
     void Start()
@@ -88,16 +108,22 @@ public class UIManager : MonoBehaviour
             this.onShowActions = onShowActions ?? new List<System.Action>();
         }
     }
-
-
     
-    public void PopulateUnits(List<BattleUnit> units)
+    public void PopulatePlayerUnits(List<BattleUnit> units)
     {
-        Debug.Log("PopulateUnits");
-        Debug.Log(units.Count);
-        if (unitsContainer == null) return;
+        Populate(units, playerUnitsContainer);
+    }
 
-        unitsContainer.Clear();
+    public void PopulateComputerUnits(List<BattleUnit> units)
+    {
+        Populate(units, computerUnitsContainer);
+    }
+    
+    private void Populate(List<BattleUnit> units, VisualElement container)
+    {
+        if (container == null) return;
+
+        container.Clear();
 
         foreach (var unit in units)
         {
@@ -106,10 +132,32 @@ public class UIManager : MonoBehaviour
 
             display.Initialize(unit);
 
-            unitsContainer.Add(ve);
+            container.Add(ve);
 
-            // store reference inside the unit for later HP updates
             unit.uiDisplay = display;
         }
     }
+    
+    public void ShowSelectedUnit(BattleUnit unit)
+    {
+        if (unit == null) return;
+
+        selectedUnitDisplay.style.display = DisplayStyle.Flex;
+
+        selectedName.text = unit.unitName;
+        selectedAbilityDescription.text = unit.specialAbilityDescription; // <-- set description
+        selectedHp.text   = $"HP: {unit.currentHitPoints}/{unit.maxHitPoints}";
+        selectedAC.text   = $"AC: {unit.armorClass}";
+        selectedDmg.text  = $"DMG: {unit.damageDice}d{unit.damageDie}";
+        selectedAtk.text  = $"ATK: +{unit.attackBonus}";
+        string actionMarker = unit.isActionReady ? "*" : "";
+        selectedMp.text   = $"MP: {unit.movementBudget}/{unit.maxMovementBudget}{actionMarker}";
+    }
+
+
+    public void HideSelectedUnit()
+    {
+        selectedUnitDisplay.style.display = DisplayStyle.None;
+    }
+
 }

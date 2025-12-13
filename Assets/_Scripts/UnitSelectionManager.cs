@@ -28,8 +28,16 @@ public class UnitSelectionManager : MonoBehaviour
         }
 
         selectedUnit = unit;
+
         BattleGrid.Instance.setupReachableTiles(selectedUnit);
+
+        // UI only for player units
+        if (unit.playerControlled)
+            UIManager.Instance.ShowSelectedUnit(unit);
+        else
+            UIManager.Instance.HideSelectedUnit();
     }
+
 
     public void DeselectUnit()
     {
@@ -40,9 +48,13 @@ public class UnitSelectionManager : MonoBehaviour
         }
 
         selectedUnit = null;
+
         BattleGrid.Instance.isSpecialMove = false;
         BattleGrid.Instance.ClearAllAccessible();
+
+        UIManager.Instance.HideSelectedUnit();
     }
+
     
     private void Update()
     {

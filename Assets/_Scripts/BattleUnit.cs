@@ -12,6 +12,8 @@ public class BattleUnit : MonoBehaviour
     public BattleTile currentTile;
 
     public string unitName = "Unit";
+    public string specialAbilityDescription = "This is unit has no special ability.";
+    
     public int armorClass = 10;
     public int attackBonus = 2;
     
@@ -97,6 +99,7 @@ public class BattleUnit : MonoBehaviour
 
     public void ReplenishMovementBudget(){
         movementBudget = maxMovementBudget;
+        RefreshUI();
     }
     
     public void KillUnit()
@@ -112,12 +115,24 @@ public class BattleUnit : MonoBehaviour
             currentTile.ClearUnit();
         }
         
+        if (TurnAndUnitsManager.Instance != null)
+        {
+            if (playerControlled)
+                TurnAndUnitsManager.Instance.PlayerUnits.Remove(this);
+            else
+                TurnAndUnitsManager.Instance.EnemyUnits.Remove(this);
+        }
+        
         Destroy(gameObject);
 
-        if (playerControlled)
+        if (UIManager.Instance != null)
         {
-            UIManager.Instance.PopulateUnits(TurnAndUnitsManager.Instance.PlayerUnits);
+            if (playerControlled)
+                UIManager.Instance.PopulatePlayerUnits(TurnAndUnitsManager.Instance.PlayerUnits);
+            else
+                UIManager.Instance.PopulateComputerUnits(TurnAndUnitsManager.Instance.EnemyUnits);
         }
+
     }
 
     public void takeDamage(int damage)
@@ -127,8 +142,8 @@ public class BattleUnit : MonoBehaviour
         var actions = new List<System.Action>();
 
         // update UI
-        if (uiDisplay is UnitDisplay display)
-            actions.Add(() => display.UpdateHp(this));
+        if (uiDisplay is UnitDisplay)
+            actions.Add(() => RefreshUI());
 
         // handle death if HP drops to 0
         if (currentHitPoints <= 0)
@@ -155,8 +170,8 @@ public class BattleUnit : MonoBehaviour
 
         var actions = new List<System.Action>();
 
-        if (uiDisplay is UnitDisplay display)
-            actions.Add(() => display.UpdateHp(this));
+        if (uiDisplay is UnitDisplay)
+            actions.Add(() => RefreshUI());
 
         UIManager.Instance.ShowFloatingText(
             $"+{healedAmount}",
@@ -167,7 +182,7 @@ public class BattleUnit : MonoBehaviour
         );
     }
     
-    public void Attack(BattleUnit target, bool isFree = false)
+    public virtual void Attack(BattleUnit target, bool isFree = false)
     {
         if (target == null) return;
 
@@ -191,6 +206,7 @@ public class BattleUnit : MonoBehaviour
         ShowFloatingText($"{damageDice}d{damageDie}", Color.yellow);
 
         target.takeDamage(damage);
+        RefreshUI();
     }
     
     private void CheckSpecialMoveToggle()
@@ -200,6 +216,21 @@ public class BattleUnit : MonoBehaviour
             ToggleSpecialMove();
         }
     }
+    
+    public void RefreshUI()
+    {
+        if (uiDisplay is UnitDisplay display)
+            display.UpdateHp(this);
+
+        // bottom selected panel (player-only)
+        if (playerControlled &&
+            UnitSelectionManager.Instance.selectedUnit == this)
+        {
+            UIManager.Instance.ShowSelectedUnit(this);
+        }
+    }
+
+
 
     public virtual void ToggleSpecialMove()
     {
@@ -210,5 +241,4 @@ public class BattleUnit : MonoBehaviour
     {
         
     }
-
 }
