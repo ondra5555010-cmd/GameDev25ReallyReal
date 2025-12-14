@@ -19,8 +19,7 @@ public class BattleGrid : MonoBehaviour
     public GameObject wizardPrefab;
     public GameObject roguePrefab;
     public GameObject clericPrefab;
-
-    public GameObject testUnitModel;
+    public GameObject enemySkelletonPrefab;
     public GameObject testUnitModelEnemy;
 
     void Awake()
@@ -51,11 +50,11 @@ public class BattleGrid : MonoBehaviour
         var r = SpawnUnit<HeroesRogue>(0, 1, true, roguePrefab);
         var c = SpawnUnit<HeroesCleric>(0, 2, true, clericPrefab);
     
-        SpawnUnit<TestUnit>(11, 0, false, testUnitModelEnemy);
-        SpawnUnit<TestUnit>(11, 1, false, testUnitModelEnemy);
-        SpawnUnit<TestUnit>(11, 2, false, testUnitModelEnemy);
-        SpawnUnit<TestUnit>(11, 3, false, testUnitModelEnemy);
-        SpawnUnit<TestUnit>(11, 4, false, testUnitModelEnemy);
+        SpawnUnit<TestUnit>(11, 0, false, enemySkelletonPrefab);
+        SpawnUnit<TestUnit>(11, 1, false, enemySkelletonPrefab);
+        SpawnUnit<TestUnit>(11, 2, false, enemySkelletonPrefab);
+        SpawnUnit<TestUnit>(11, 3, false, enemySkelletonPrefab);
+        SpawnUnit<TestUnit>(11, 4, false, enemySkelletonPrefab);
 
         TurnAndUnitsManager.Instance.refreshFactionUnits(TurnAndUnitsManager.Instance.PlayerUnits);
     }
@@ -82,7 +81,7 @@ public class BattleGrid : MonoBehaviour
             return unit;
         }
         
-        GameObject unitModel = model != null ? model : testUnitModel;
+        GameObject unitModel = model != null ? model : clericPrefab;
         unit.Initialize(unitModel, isPlayerControlled);
 
         if (isPlayerControlled)
