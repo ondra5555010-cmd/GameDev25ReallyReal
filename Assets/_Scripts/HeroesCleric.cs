@@ -10,8 +10,8 @@ public class HeroesCleric : BattleUnit
 
     private void Awake()
     {
-        armorClass = 15;
-        maxHitPoints = 19;
+        armorClass = 5;
+        maxHitPoints = 8;
         maxMovementBudget = 4;
         damageDie = 8;
         attackBonus = 2;

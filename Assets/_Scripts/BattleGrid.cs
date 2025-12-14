@@ -47,15 +47,54 @@ public class BattleGrid : MonoBehaviour
             }
         }
         
-        var w = SpawnUnit<HeroesWizard>(0, 0, true, wizardPrefab);
-        var r = SpawnUnit<HeroesRogue>(0, 1, true, roguePrefab);
-        var c = SpawnUnit<HeroesCleric>(0, 2, true, clericPrefab);
+        var w = SpawnUnit<HeroesWizard>(0, 1, true, wizardPrefab);
+        var r = SpawnUnit<HeroesRogue>(1, 2, true, roguePrefab);
+        var c = SpawnUnit<HeroesCleric>(0, 3, true, clericPrefab);
 
-        var skel1 = SpawnUnit<EnemiesSkelleton>(11, 0, false, enemySkelletonPrefab);
-        var skel2 = SpawnUnit<EnemiesSkelleton>(11, 1, false, enemySkelletonPrefab);
-        var skel3 = SpawnUnit<EnemiesSkelleton>(11, 2, false, enemySkelletonPrefab);
-        var skel4 = SpawnUnit<EnemiesSkelleton>(11, 3, false, enemySkelletonPrefab);
-        var skel5 = SpawnUnit<EnemiesSkelleton>(11, 4, false, enemySkelletonPrefab);
+        // 3. Spawn Nepřítele na základě ID z GameSession
+        // Získáme ID z naší statické paměti
+        string enemyID = GameSession.currentEnemyID;
+
+        // Pojistka pro testování (kdybyste spustil scénu přímo bez mapy)
+        if (string.IsNullOrEmpty(enemyID)) 
+        {
+            Debug.LogWarning("Žádné EnemyID v GameSession! Spouštím testovacího Skeletona.");
+            enemyID = "Skeleton_Default"; 
+        }
+
+        // --- ROZHODOVACÍ LOGIKA (IF / ELSE) ---
+        
+        // Pokud ID obsahuje slovo "Mimic" (nezáleží na velikosti písmen, pokud si to ohlídáte)
+        if (enemyID.Contains("Mimic"))
+        {
+            // Spawneme Mimica (zde musíte mít vytvořenou třídu EnemiesMimic)
+            var mim01 = SpawnUnit<EnemiesMimic>(10, 2, false, enemyMimicPrefab);
+            
+            Debug.Log("Spawnut Mimic na základě ID: " + enemyID);
+        }
+        // Pokud ID obsahuje slovo "Skeleton" nebo "Skelleton"
+        else if (enemyID.Contains("Skeleton") || enemyID.Contains("Skelleton"))
+        {
+            // Zde můžete nastavit logiku pro skupinu. Např. Skeleton není nikdy sám.
+            // Hlavní skeleton:
+            var skel03 = SpawnUnit<EnemiesSkelleton>(10, 2, false, enemySkelletonPrefab);
+            
+            // Volitelně: Přidat pomocníky (minions), pokud je to silný skeleton
+            var skel01 = SpawnUnit<EnemiesSkelleton>(11, 0, false, enemySkelletonPrefab);
+            var skel02 = SpawnUnit<EnemiesSkelleton>(10, 1, false, enemySkelletonPrefab);
+            var skel04 = SpawnUnit<EnemiesSkelleton>(10, 3, false, enemySkelletonPrefab);
+            var skel05 = SpawnUnit<EnemiesSkelleton>(11, 4, false, enemySkelletonPrefab);
+
+            Debug.Log("Spawnuta skupina Skeletonů na základě ID: " + enemyID);
+        }
+        else
+        {
+            // Fallback - pokud ID nepoznáme, hodíme tam default (třeba Skeletona)
+            Debug.LogError($"Neznámý typ nepřítele: {enemyID}. Spawnuji defaultního Skeletona.");
+            var skel12 = SpawnUnit<EnemiesSkelleton>(11, 1, false, enemySkelletonPrefab);
+            var skel13 = SpawnUnit<EnemiesSkelleton>(11, 2, false, enemySkelletonPrefab);
+            var skel14 = SpawnUnit<EnemiesSkelleton>(11, 3, false, enemySkelletonPrefab);
+        }
 
         TurnAndUnitsManager.Instance.refreshFactionUnits(TurnAndUnitsManager.Instance.PlayerUnits);
     }
