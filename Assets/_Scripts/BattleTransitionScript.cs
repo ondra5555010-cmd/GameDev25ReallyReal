@@ -3,19 +3,42 @@ using UnityEngine.SceneManagement;
 
 public class Battletransitionscript : MonoBehaviour
 {
-    // Jméno battle scény
     [SerializeField] private string battleSceneName = "BattleScene";
 
+    private void Start()
+    {
+        // Pokud se vracíme z boje, obnovíme pozici hrdinů
+        if (GameSession.returningFromBattle)
+        {
+            transform.position = GameSession.lastPlayerPosition;
+            GameSession.returningFromBattle = false; // Reset flagu
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Something collides.");
-        // Ověříme, jestli je objekt nepřítel
+        // 1. Zkontrolujeme tag
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy hit! Loading battle scene...");
+            // 2. Pokusíme se získat identifikační skript z objektu, do kterého jsme narazili
+            EnemyIdentifier enemy = other.GetComponent<EnemyIdentifier>();
 
-            // Načtení battle scény
-            SceneManager.LoadScene(battleSceneName);
+            if (enemy != null)
+            {
+                Debug.Log($"Hit enemy: {enemy.enemyID}. Loading battle...");
+
+                // 3. ULOŽÍME DATA DO GAMESESSION
+                GameSession.currentEnemyID = enemy.enemyID;
+                GameSession.lastPlayerPosition = transform.position;
+                GameSession.returningFromBattle = true;
+
+                // 4. Načteme boj
+                SceneManager.LoadScene(battleSceneName);
+            }
+            else
+            {
+                Debug.LogError("Narazil jsem do objektu s tagem Enemy, ale chybí mu skript EnemyIdentifier!");
+            }
         }
     }
 }
