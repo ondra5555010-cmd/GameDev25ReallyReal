@@ -20,13 +20,6 @@ public class UnitSelectionManager : MonoBehaviour
 
         DeselectUnit();
 
-        if (unit != null && unit.GetRenderer() != null)
-        {
-            Renderer rend = unit.GetRenderer();
-            originalColor = rend.material.color;
-            rend.material.color = highlightColor;
-        }
-
         selectedUnit = unit;
 
         BattleGrid.Instance.setupReachableTiles(selectedUnit);
@@ -41,12 +34,6 @@ public class UnitSelectionManager : MonoBehaviour
 
     public void DeselectUnit()
     {
-        if (selectedUnit != null && selectedUnit.GetRenderer() != null)
-        {
-            Renderer rend = selectedUnit.GetRenderer();
-            rend.material.color = originalColor;
-        }
-
         selectedUnit = null;
 
         BattleGrid.Instance.isSpecialMove = false;

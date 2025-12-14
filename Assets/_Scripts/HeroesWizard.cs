@@ -16,7 +16,7 @@ public class HeroesWizard : BattleUnit
         damageDie = 6;
         attackBonus = 0;
         unitName = "Wizard";
-        specialAbilityDescription = "Can cast magical missile which causes ranged 1d4 damage (Press Shift).";
+        specialAbilityDescription = "Can cast 'Magic Missile' which causes ranged 1d4 damage. (Press Shift)";
     }
     
     public override void ToggleSpecialMove()

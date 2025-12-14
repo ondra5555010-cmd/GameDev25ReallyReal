@@ -16,7 +16,7 @@ public class HeroesCleric : BattleUnit
         damageDie = 8;
         attackBonus = 2;
         unitName = "Cleric";
-        specialAbilityDescription = "Can cast heal wounds which restores 1d8 HP to a frienldy unit of your choice. (Press Shift)";
+        specialAbilityDescription = "Can cast 'Cure Wounds' which restores 1d8 HP to a friendly unit of your choice. (Press Shift)";
     }
 
     void Update()
