@@ -16,7 +16,7 @@ public class HeroesRogue : BattleUnit
         damageDie = 4;
         attackBonus = 5;
         unitName = "Rogue";
-        specialAbilityDescription = "Causes 2d6 extra damage against enemies adjacent to friendly units.";
+        specialAbilityDescription = "Causes extra 2d6 damage on hit against enemies adjacent to friendly units.";
     }
     
     public override void Attack(BattleUnit target, bool isFree = false)
