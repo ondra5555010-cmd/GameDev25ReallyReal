@@ -49,12 +49,12 @@ public class BattleGrid : MonoBehaviour
         var w = SpawnUnit<HeroesWizard>(0, 0, true, wizardPrefab);
         var r = SpawnUnit<HeroesRogue>(0, 1, true, roguePrefab);
         var c = SpawnUnit<HeroesCleric>(0, 2, true, clericPrefab);
-    
-        SpawnUnit<TestUnit>(11, 0, false, enemySkelletonPrefab);
-        SpawnUnit<TestUnit>(11, 1, false, enemySkelletonPrefab);
-        SpawnUnit<TestUnit>(11, 2, false, enemySkelletonPrefab);
-        SpawnUnit<TestUnit>(11, 3, false, enemySkelletonPrefab);
-        SpawnUnit<TestUnit>(11, 4, false, enemySkelletonPrefab);
+
+        var skel1 = SpawnUnit<EnemiesSkelleton>(11, 0, false, enemySkelletonPrefab);
+        var skel2 = SpawnUnit<EnemiesSkelleton>(11, 1, false, enemySkelletonPrefab);
+        var skel3 = SpawnUnit<EnemiesSkelleton>(11, 2, false, enemySkelletonPrefab);
+        var skel4 = SpawnUnit<EnemiesSkelleton>(11, 3, false, enemySkelletonPrefab);
+        var skel5 = SpawnUnit<EnemiesSkelleton>(11, 4, false, enemySkelletonPrefab);
 
         TurnAndUnitsManager.Instance.refreshFactionUnits(TurnAndUnitsManager.Instance.PlayerUnits);
     }
