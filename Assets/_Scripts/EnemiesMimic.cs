@@ -26,7 +26,7 @@ public class EnemiesMimic : BattleUnit
         damageDice = 2; 
         damageDie = 10;
         
-        specialAbilityDescription = $"Adhesive Skin: Melee attackers take {ADHESIVE_DAMAGE} dmg. Acid Eruption: 4d6 AOE (CD: {ACID_MAX_COOLDOWN}).";
+        specialAbilityDescription = $"Adhesive Skin: Melee attackers take {ADHESIVE_DAMAGE} dmg. Acid Eruption: 3d6 AOE (CD: {ACID_MAX_COOLDOWN}).";
     }
 
     // --- 1. ODPOČET COOLDOWNU (Voláno z TurnAndUnitsManager) ---
@@ -119,7 +119,7 @@ public class EnemiesMimic : BattleUnit
             if (victim == this) continue;
 
             // Hod na poškození kyselinou: 4d6
-            int acidDamage = DiceRollManager.Instance.Roll(6, 4); 
+            int acidDamage = DiceRollManager.Instance.Roll(6, 3); 
             
             // Informační text nad obětí (damage číslo se zobrazí v takeDamage automaticky červeně)
             victim.ShowFloatingText("Acid Burn", new Color(0.7f, 1f, 0f));
