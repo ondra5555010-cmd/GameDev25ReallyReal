@@ -1,46 +1,43 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // required for new Input System
+using UnityEngine.InputSystem;
 using System.Collections;
 
-//[RequireComponent(typeof(Animator))]
-// kdykoliv nebude na game objectu Animator, Unity ho přidá automaticky
-// pokud je Animator, nic se nestane
 public class PlayerGroupBehaviour : MonoBehaviour
 {
-    //public GridBehaviour gridManager;
     public GridStat currentTile;
-    Animator _animator;
+    
+    // ZMĚNA 1: Místo jednoho animátoru jich budeme ovládat pole (pro všechny hrdiny)
+    private Animator[] _animators; 
 
     [SerializeField]
-    [Range(0.5f, 10f)]
-    // atribut SerializeField umožní nastavit hodnotu v inspektoru, i když je pole private
-    float speed = 8f; //1;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private bool isMoving = false; // zabrání spouštění pohybu, pokud už postava běží
-
-    private Vector3 offsetFromTileCenter;  // offset pro postavy od středu dlaždice
-    public Transform visualRoot; // parent tří hrdinů
+    [Range(0.5f, 20f)] // Zvýšil jsem range, abyste mohl testovat rychlejší pohyb
+    float speed = 8f; 
+    
+    private bool isMoving = false;
+    private Vector3 offsetFromTileCenter;
+    
+    // Parent tří hrdinů (pokud je skript na tomto objektu, je to "transform")
+    // public Transform visualRoot; // Toto už možná nebudete potřebovat, pokud hýbeme přímo Parentem
+    
     Vector3 inputDir = Vector3.zero;
-    public Transform[] heroes; // pole tří hrdinů
+    public Transform[] heroes; // Zde v inspektoru přiřadíte jednotlivé hrdiny pro otáčení
 
     void Awake()
-    {        
-        //_animator = GetComponent<Animator>();
-        _animator = GetComponentInChildren<Animator>();
-        // zapamatuj si počáteční offset od středu dlaždice
-        offsetFromTileCenter = transform.position - currentTile.Position;
-        // získáme referenci na Animator, nemusíme ji ani testovat, protože RequireComponent zajistí, že tam bude
-    }
-
-    void Start()
-    {
-        //transform.position = offsetFromTileCenter;
+    {       
+        // ZMĚNA 2: Najdeme všechny animátory v dětech (Children)
+        // Toto najde animátory na hrdinech pod tímto Parent objektem
+        _animators = GetComponentsInChildren<Animator>();
+        
+        // Pokud startujete hru a Parent není přesně na středu, spočítáme offset
+        if(currentTile != null)
+            offsetFromTileCenter = transform.position - currentTile.Position;
     }
 
     void Update()
     {
-        if (isMoving) return; // ignoruj vstupy během pohybu
+        if (isMoving) return; 
 
+        // Logika výběru směru zůstává stejná
         if (Keyboard.current.wKey.wasPressedThisFrame && currentTile.CanMoveNorth)
         {
             inputDir = Vector3.forward;
@@ -62,49 +59,45 @@ public class PlayerGroupBehaviour : MonoBehaviour
             StartCoroutine(MoveTo(currentTile.westNeighbor));
         }
 
-         if (inputDir != Vector3.zero)
+        // Otáčení jednotlivých hrdinů
+        if (inputDir != Vector3.zero)
         {
             foreach (var hero in heroes)
-                hero.forward = inputDir;
+            {
+                if(hero != null) hero.forward = inputDir;
+            }
         }
     }
-
-
-    
-    /*private void MoveTo(GridStat nextTile)
-    {
-        _animator.SetBool("IsMoving", true);
-
-        currentTile = nextTile;
-        transform.position = currentTile.Position + offsetFromTileCenter;  // <-- zde zachováme offset
-
-        Debug.Log($"Moved to tile at ({currentTile.x}, {currentTile.y})");
-        _animator.SetBool("IsMoving", false);
-    }*/
 
     private IEnumerator MoveTo(GridStat nextTile)
     {
         isMoving = true;
-        _animator.SetBool("IsMoving", true);
 
-        Vector3 startPos = transform.position;
+        // ZMĚNA 3: Zapneme animaci Běhu na VŠECH hrdinech najednou
+        foreach(var anim in _animators)
+        {
+            anim.SetBool("IsMoving", true);
+        }
+
         Vector3 endPos = nextTile.Position + offsetFromTileCenter;
         currentTile = nextTile;
 
-        float distance = Vector3.Distance(startPos, endPos);
-        float travelTime = distance / speed; // čas potřebný k přeběhnutí
-        float elapsed = 0f;
-
-        while (elapsed < travelTime)
+        // Použijeme spolehlivější MoveTowards místo Lerp (jak jsme řešili předtím)
+        while (transform.position != endPos)
         {
-            transform.position = Vector3.Lerp(startPos, endPos, elapsed / travelTime);
-            elapsed += Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
             yield return null;
         }
 
-        transform.position = endPos; // přesně na cílové dlaždici
+        transform.position = endPos; 
+
+        // ZMĚNA 4: Vypneme animaci na VŠECH hrdinech
+        foreach(var anim in _animators)
+        {
+            anim.SetBool("IsMoving", false);
+        }
+        
         Debug.Log($"Moved to tile at ({currentTile.x}, {currentTile.y})");
-        _animator.SetBool("IsMoving", false);
         isMoving = false;
     }
 }
