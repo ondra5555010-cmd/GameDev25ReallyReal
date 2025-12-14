@@ -56,6 +56,10 @@ public class TurnAndUnitsManager : MonoBehaviour
         {
             unit.ReplenishMovementBudget();
             unit.isActionReady = true;
+            
+            // NOVÉ: Zavoláme specifickou logiku pro start tahu
+            // U obyčejných jednotek se nestane nic, u Mimica se sníží cooldown
+            unit.OnTurnStart();
         }
     }
 

@@ -135,7 +135,7 @@ public class BattleUnit : MonoBehaviour
 
     }
 
-    public void takeDamage(int damage)
+    public virtual void takeDamage(int damage)
     {
         currentHitPoints -= damage;
 
@@ -260,4 +260,9 @@ public class BattleUnit : MonoBehaviour
             currentTile.OnMouseDown();
     }
 
+    // Virtuální metoda, kterou může Boss přepsat
+    public virtual void OnTurnStart()
+    {
+        // Ve výchozím stavu nedělá nic, obyčejné jednotky to ignorují
+    }
 }
