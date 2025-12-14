@@ -2215,7 +2215,6 @@ GameObject:
   m_Component:
   - component: {fileID: 476929357}
   - component: {fileID: 476929358}
-  - component: {fileID: 476929359}
   m_Layer: 0
   m_Name: chest
   m_TagString: Enemy
@@ -2259,21 +2258,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.25, y: 2, z: 0.25}
-  m_Center: {x: 17.4, y: 9, z: -0.24999988}
---- !u!114 &476929359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 476929356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbd77b3ae4ee4a04a96f34e981318cff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyIdentifier
-  enemyID: Mimic01
+  m_Size: {x: 1.5, y: 2, z: 1.5}
+  m_Center: {x: 17.4, y: 9, z: -0.25}
 --- !u!1001 &487143933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2562,7 +2548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGroupBehaviour
   currentTile: {fileID: 787219384}
-  speed: 4
+  speed: 1
   heroes:
   - {fileID: 1970157608}
   - {fileID: 711526308}
@@ -6692,7 +6678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8307778323485987119, guid: 0e5d0b7266cb387448b59dbbeacda9a4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8647185007089208213, guid: 0e5d0b7266cb387448b59dbbeacda9a4, type: 3}
       propertyPath: m_LocalScale.x
