@@ -19,6 +19,7 @@ public class BattleGrid : MonoBehaviour
     public GameObject wizardPrefab;
     public GameObject roguePrefab;
     public GameObject clericPrefab;
+    public GameObject enemyMimicPrefab;
     public GameObject enemySkelletonPrefab;
     public GameObject testUnitModelEnemy;
 
