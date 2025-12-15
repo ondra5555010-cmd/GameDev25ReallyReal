@@ -118,12 +118,8 @@ public class UIManager : MonoBehaviour
 
     public void OnQuitGameButton()
     {
-        Debug.Log("QUIT GAME");
-        #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-        #else
-                Application.Quit();
-        #endif
+        Debug.Log("QUIT GAME TO MAIN MENU");
+        SceneManager.LoadScene("MainMenuScene");
     }
 
     public void ShowFloatingText(string message, Color color, Transform target, Vector3 offset, List<System.Action> onShowActions = null)
