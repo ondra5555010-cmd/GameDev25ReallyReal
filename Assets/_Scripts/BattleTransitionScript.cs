@@ -25,6 +25,17 @@ public class Battletransitionscript : MonoBehaviour
 
             if (enemy != null)
             {
+                // Pokud je tento nepřítel už na seznamu mrtvých...
+                if (GameSession.deadEnemies.Contains(enemy.enemyID))
+                {
+                    Debug.Log($"Ignoruji kolizi s mrtvým nepřítelem: {enemy.enemyID}");
+                    
+                    // Můžeme ho rovnou zničit, aby už neprudil
+                    Destroy(other.gameObject); 
+                    
+                    // A okamžitě vyskočíme z metody, aby se nenačetla scéna
+                    return; 
+                }
                 Debug.Log($"Hit enemy: {enemy.enemyID}. Loading battle...");
 
                 // 3. ULOŽÍME DATA DO GAMESESSION

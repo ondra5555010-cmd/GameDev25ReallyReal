@@ -123,6 +123,10 @@ public class BattleUnit : MonoBehaviour
                 TurnAndUnitsManager.Instance.EnemyUnits.Remove(this);
         }
         
+        if (BattleResultManager.Instance != null)
+        {
+            BattleResultManager.Instance.CheckBattleState();
+        }
         Destroy(gameObject);
 
         if (UIManager.Instance != null)

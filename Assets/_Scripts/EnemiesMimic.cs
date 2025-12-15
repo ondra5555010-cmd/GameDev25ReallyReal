@@ -15,7 +15,8 @@ public class EnemiesMimic : BattleUnit
         
         // --- BOSS STATY ---
         armorClass = 20; 
-        maxHitPoints = 80; 
+        //maxHitPoints = 80; 
+        maxHitPoints = 10; 
         // Poznámka: currentHitPoints se nastaví v Initialize() na hodnotu maxHitPoints
         
         maxMovementBudget = 3; // Pomalý

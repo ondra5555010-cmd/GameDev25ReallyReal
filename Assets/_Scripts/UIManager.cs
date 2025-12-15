@@ -2,23 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using TMPro; // Přidáno pro TextMeshPro na Canvasu (pokud používáte)
+using UnityEngine.SceneManagement; // Pro tlačítka
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-    
+    [Header("UI Toolkit References")]
     private UIDocument uiDocument;
     private VisualElement root;
     private VisualElement playerUnitsContainer;
     private VisualElement computerUnitsContainer;
     private VisualElement selectedUnitDisplay;
-    
     public VisualTreeAsset playerUnitTemplate;
 
+    [Header("Floating Text")]
     public GameObject floatingTextPrefab;
-    public float displayDelay = 5f; // time between queued texts
+    public float displayDelay = 5f;
     public bool isDisplaying = false;
+    private Queue<FloatingTextRequest> queueTextRequest = new();
+
+    // --- NOVÉ: Reference na Canvas Panely (Win/Lose) ---
+    [Header("Game Over Screens (Canvas)")]
+    public GameObject winScreenPanel;
+    public GameObject loseScreenPanel;
+    public GameObject endingScreenPanel;
+    public TextMeshProUGUI lootText; // Text uvnitř Win panelu
     
+    public TextMeshProUGUI lootText_final; // Text uvnitř Win panelu
+    // UI Toolkit Labels
     private Label selectedAbilityDescription;
     private Label selectedName;
     private Label selectedHp;
@@ -27,8 +39,6 @@ public class UIManager : MonoBehaviour
     private Label selectedAtk;
     private Label selectedMp;
     
-    private Queue<FloatingTextRequest> queueTextRequest = new();
-    
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -36,6 +46,7 @@ public class UIManager : MonoBehaviour
         else
             Instance = this;
         
+        // UI Toolkit setup
         uiDocument = GetComponent<UIDocument>();
         root = uiDocument.rootVisualElement;
 
@@ -50,6 +61,11 @@ public class UIManager : MonoBehaviour
         selectedDmg = selectedUnitDisplay.Q<Label>("unit_dmg");
         selectedAtk = selectedUnitDisplay.Q<Label>("unit_attk");
         selectedMp = selectedUnitDisplay.Q<Label>("unit_mp");
+
+        // --- NOVÉ: Ujistíme se, že panely jsou na začátku skryté ---
+        if (winScreenPanel) winScreenPanel.SetActive(false);
+        if (loseScreenPanel) loseScreenPanel.SetActive(false);
+        if (endingScreenPanel) endingScreenPanel.SetActive(false);
     }
     
     void Start()
@@ -57,6 +73,58 @@ public class UIManager : MonoBehaviour
         
     }
 
+    // --- NOVÉ METODY PRO ZOBRAZENÍ OBRAZOVEK ---
+
+    public void ShowWinScreen(string message)
+    {
+        if (lootText != null) lootText.text = message;
+        if (winScreenPanel != null) winScreenPanel.SetActive(true);
+        
+        // Vypneme UI Toolkit interakci, aby se nepletla
+        root.style.display = DisplayStyle.None; 
+    }
+
+    public void ShowLoseScreen()
+    {
+        if (loseScreenPanel != null) loseScreenPanel.SetActive(true);
+        root.style.display = DisplayStyle.None;
+    }
+
+    public void ShowEndingScreen(string message)
+    {
+        if (lootText != null) lootText.text = message;
+        if (endingScreenPanel != null) endingScreenPanel.SetActive(true);
+        root.style.display = DisplayStyle.None;
+    }
+
+    // --- METODY PRO TLAČÍTKA (Přiřadíte v Inspectoru na OnClick) ---
+
+    public void OnAcceptButton()
+    {
+        Debug.Log("RETURN TO DUNGEON");
+        // Uložení mrtvého nepřítele
+        if (!string.IsNullOrEmpty(GameSession.currentEnemyID))
+        {
+            GameSession.deadEnemies.Add(GameSession.currentEnemyID);
+        }
+        SceneManager.LoadScene("DungeonScene");
+    }
+
+    public void OnRestartButton()
+    {
+        Debug.Log("RESTART BATTLE");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void OnQuitGameButton()
+    {
+        Debug.Log("QUIT GAME");
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                Application.Quit();
+        #endif
+    }
 
     public void ShowFloatingText(string message, Color color, Transform target, Vector3 offset, List<System.Action> onShowActions = null)
     {

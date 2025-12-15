@@ -11,7 +11,11 @@ public static class GameSession
 
     // Uložená pozice hráče před bojem (aby se nevrátil na start mapy)
     public static Vector3 lastPlayerPosition;
-    
+
     // Flag, abychom věděli, že se vracíme z boje
     public static bool returningFromBattle = false;
+
+    // --- NOVÉ: Inventář ---
+    public static bool hasDungeonKey = false; // Klíč z prvních bojů
+    public static bool hasRoyalCrown = false; // Koruna z Bosse (konec hry)
 }

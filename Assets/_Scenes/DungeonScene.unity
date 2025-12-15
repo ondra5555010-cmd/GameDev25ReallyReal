@@ -5884,7 +5884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd77b3ae4ee4a04a96f34e981318cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyIdentifier
-  enemyID: Skelleton01
+  enemyID: Skeleton01
 --- !u!1 &1882934637
 GameObject:
   m_ObjectHideFlags: 0
@@ -6692,7 +6692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8307778323485987119, guid: 0e5d0b7266cb387448b59dbbeacda9a4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8647185007089208213, guid: 0e5d0b7266cb387448b59dbbeacda9a4, type: 3}
       propertyPath: m_LocalScale.x
