@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
@@ -12,21 +11,29 @@ public class PauseManager : MonoBehaviour
     public Button quitButton;
     public GameObject firstSelected;
 
+    [Header("Audio")]
+    public DungeonMusic dungeonMusic; // reference na DungeonMusicPlayer
+
     public static bool IsPaused { get; private set; }
 
     void Start()
     {
         SetUI(false);
+
         resumeButton.onClick.AddListener(ResumeGame);
         quitButton.onClick.AddListener(QuitGame);
+
+        IsPaused = false;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (IsPaused) ResumeGame();
-            else PauseGame();
+            if (IsPaused)
+                ResumeGame();
+            else
+                PauseGame();
         }
     }
 
@@ -34,9 +41,12 @@ public class PauseManager : MonoBehaviour
     {
         IsPaused = true;
         Time.timeScale = 0f;
-        AudioListener.pause = true;
 
         SetUI(true);
+
+        // ztlumení hudby
+        if (dungeonMusic != null)
+            dungeonMusic.OnPause();
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -49,18 +59,24 @@ public class PauseManager : MonoBehaviour
     {
         IsPaused = false;
         Time.timeScale = 1f;
-        AudioListener.pause = false;
 
         SetUI(false);
+
+        // zesílení hudby zpět
+        if (dungeonMusic != null)
+            dungeonMusic.OnResume();
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void QuitGame()
     {
-        #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-        #else
-                Application.Quit();
-        #endif
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     void SetUI(bool state)
