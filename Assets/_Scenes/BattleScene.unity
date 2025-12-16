@@ -1703,11 +1703,11 @@ AudioSource:
   m_GameObject: {fileID: 1071230117}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 3946436462173217707, guid: c72f7a13e04fe944a93acc5b9bead4d8, type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.35
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3363,7 +3363,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Z\xEDsk\xE1n p\u0159edm\u011Bt: \n\nKL\xCD\u010C KE DVE\u0158\xCDM"
+  m_text: 'Item obtained:
+
+    
+
+    KEY TO THE DOOR'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
