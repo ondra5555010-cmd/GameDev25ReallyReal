@@ -23,6 +23,11 @@ public class DungeonDoor : MonoBehaviour
         if (GameSession.hasDungeonKey)
         {
             OpenDoor();
+            // Tímto se změní globální proměnná na false
+            // a InventoryHUD v příštím framu automaticky vypne obrázek.
+            GameSession.hasDungeonKey = false; 
+            
+            Debug.Log("Klíč použit a zlomen v zámku!"); // Lore vsuvka :)
             return true;
         }
         else
