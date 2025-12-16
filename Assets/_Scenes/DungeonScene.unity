@@ -2226,6 +2226,9 @@ MonoBehaviour:
   - {fileID: 1970157608}
   - {fileID: 711526308}
   - {fileID: 2061742511}
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!95 &516745327
 Animator:
   serializedVersion: 7
@@ -3448,6 +3451,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door_Middle
       objectReference: {fileID: 0}
+    - target: {fileID: 5721723476799238222, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7936834669806457470, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -3511,7 +3518,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5721723476799238222, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2003493582}
+    - targetCorrespondingSourceObject: {fileID: 5721723476799238222, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2003493583}
   m_SourcePrefab: {fileID: 100100000, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
 --- !u!4 &817497227 stripped
 Transform:
@@ -5011,8 +5024,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.7936507, y: 1.7076927, z: 1}
-  m_Center: {x: -0.031746548, y: 0.9538464, z: -0.2}
+  m_Size: {x: 1.7936507, y: 1.7076927, z: 1.35}
+  m_Center: {x: -0.031746548, y: 0.9538464, z: 0.09}
 --- !u!114 &1757820771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5402,6 +5415,46 @@ MonoBehaviour:
   southNeighbor: {fileID: 0}
   eastNeighbor: {fileID: 0}
   westNeighbor: {fileID: 415717758}
+--- !u!1 &2003493578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5721723476799238222, guid: 4adae8232505e0e45b64cc3b61e9d9e1, type: 3}
+  m_PrefabInstance: {fileID: 817497226}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2003493582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003493578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48fe4a7023eb85044a4bfe86e8e6d55c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonDoor
+  isOpen: 0
+  doorVisuals: {fileID: 817497227}
+--- !u!65 &2003493583
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003493578}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.5805652, y: 3.297468, z: 0.39488155}
+  m_Center: {x: -0.6579487, y: 1.6476249, z: 0.0000014634309}
 --- !u!1001 &2017034429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5709,7 +5762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8307778323485987119, guid: 0e5d0b7266cb387448b59dbbeacda9a4, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8647185007089208213, guid: 0e5d0b7266cb387448b59dbbeacda9a4, type: 3}
       propertyPath: m_LocalScale.x
