@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PauseManager : MonoBehaviour
     public GameObject panelDim;
     public GameObject panelMenu;
     public Button resumeButton;
+    public Button menuButton;
     public Button quitButton;
     public GameObject firstSelected;
 
@@ -21,6 +23,7 @@ public class PauseManager : MonoBehaviour
         SetUI(false);
 
         resumeButton.onClick.AddListener(ResumeGame);
+        menuButton.onClick.AddListener(MenuGame);
         quitButton.onClick.AddListener(QuitGame);
 
         IsPaused = false;
@@ -68,6 +71,12 @@ public class PauseManager : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void MenuGame()
+    {
+        Debug.Log("QUIT GAME TO MAIN MENU");
+        SceneManager.LoadScene("MainMenuScene");
     }
 
     void QuitGame()
