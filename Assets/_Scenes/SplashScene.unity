@@ -349,6 +349,7 @@ GameObject:
   - component: {fileID: 319660324}
   - component: {fileID: 319660323}
   - component: {fileID: 319660328}
+  - component: {fileID: 319660329}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -473,6 +474,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &319660329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319660322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a1f134af3956144a99371d0912b5bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleSplashController
 --- !u!1 &1776231867
 GameObject:
   m_ObjectHideFlags: 0
