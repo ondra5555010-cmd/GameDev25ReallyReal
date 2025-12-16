@@ -9,6 +9,8 @@ public class MainMenuController : MonoBehaviour
 
     [Header("Scene To Load")]
     [SerializeField] private string gameSceneName = "DungeonScene";
+    [SerializeField] private AudioSource menuMusic;
+
 
     private void Start()
     {
@@ -22,6 +24,8 @@ public class MainMenuController : MonoBehaviour
 
     public void OnPlay()
     {
+        if (menuMusic != null) menuMusic.Stop();
+
         Time.timeScale = 1f;
         SceneManager.LoadScene(gameSceneName);
     }
