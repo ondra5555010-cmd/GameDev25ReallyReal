@@ -122,6 +122,16 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("MainMenuScene");
     }
 
+    public void OnExitGameButton()
+    {
+        Debug.Log("CLOSING GAME");
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                Application.Quit();
+        #endif
+    }
+
     public void ShowFloatingText(string message, Color color, Transform target, Vector3 offset, List<System.Action> onShowActions = null)
     {
         queueTextRequest.Enqueue(new FloatingTextRequest(message, color, target, offset, onShowActions));
