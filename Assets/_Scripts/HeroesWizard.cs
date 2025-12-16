@@ -52,7 +52,7 @@ public class HeroesWizard : BattleUnit
         int damage = DiceRollManager.Instance.Roll(4) + 1;
 
         // Show floating text
-        ShowFloatingText($"{damage} (Wizard Spell)", Color.cyan);
+        ShowFloatingText($"Magic missile", Color.cyan);
 
         // Apply damage
         target.takeDamage(damage);

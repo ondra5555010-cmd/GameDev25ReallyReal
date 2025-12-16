@@ -19,6 +19,7 @@ public class TurnAndUnitsManager : MonoBehaviour
         
         PlayerUnits = new List<BattleUnit>();
         EnemyUnits  = new List<BattleUnit>();
+        isPlayerTurn = true;
     }
 
     void Update()
@@ -42,9 +43,11 @@ public class TurnAndUnitsManager : MonoBehaviour
         if (isPlayerTurn)
         {
             refreshFactionUnits(PlayerUnits);
+            UIManager.Instance.ShowPlayerTurnSignal();
         }
         else
         {
+            UIManager.Instance.HidePlayerTurnSignal();
             refreshFactionUnits(EnemyUnits);
             StartCoroutine(RunAITurn());
         }
@@ -55,7 +58,6 @@ public class TurnAndUnitsManager : MonoBehaviour
         foreach (var unit in factionsUnits)
         {
             unit.ReplenishMovementBudget();
-            unit.isActionReady = true;
             
             // NOVÉ: Zavoláme specifickou logiku pro start tahu
             // U obyčejných jednotek se nestane nic, u Mimica se sníží cooldown

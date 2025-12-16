@@ -29,6 +29,11 @@ public class BattleGrid : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    public bool PlayerInputAllowed =>
+        TurnAndUnitsManager.Instance.isPlayerTurn
+        && !isAnimating
+        && UIManager.Instance.isActive && !UIManager.Instance.isDisplaying;
+
     void Start()
     {
         tiles = new BattleTile[width, height];

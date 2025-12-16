@@ -99,6 +99,7 @@ public class BattleUnit : MonoBehaviour
 
     public void ReplenishMovementBudget(){
         movementBudget = maxMovementBudget;
+        isActionReady = true;
         RefreshUI();
     }
     
@@ -224,7 +225,7 @@ public class BattleUnit : MonoBehaviour
     public void RefreshUI()
     {
         if (uiDisplay is UnitDisplay display)
-            display.UpdateHp(this);
+            display.UpdateDisplay(this);
 
         // bottom selected panel (player-only)
         if (playerControlled &&
