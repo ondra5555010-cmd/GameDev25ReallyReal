@@ -1598,10 +1598,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7304312011994197823, guid: 967ec31492a295946870d9d188936f69, type: 3}
-      propertyPath: m_Spacing
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4168,7 +4164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6f1005086ea874abbbe4b408d73248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
-  hideMouse: 0
   panelDim: {fileID: 2124716163}
   panelMenu: {fileID: 585862715}
   resumeButton: {fileID: 852018171}

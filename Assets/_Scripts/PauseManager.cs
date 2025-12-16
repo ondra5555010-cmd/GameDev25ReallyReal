@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
+    public bool hideMouse = true;
+    
     [Header("UI References")]
     public GameObject panelDim;
     public GameObject panelMenu;
@@ -69,8 +71,10 @@ public class PauseManager : MonoBehaviour
         if (dungeonMusic != null)
             dungeonMusic.OnResume();
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        if (hideMouse){
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     void MenuGame()
