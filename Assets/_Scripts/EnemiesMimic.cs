@@ -14,19 +14,19 @@ public class EnemiesMimic : BattleUnit
         unitName = "Elder Mimic (Boss)";
         
         // --- BOSS STATY ---
-        armorClass = 20;  
-        maxHitPoints = 45; 
+        armorClass = 12;  
+        maxHitPoints = 58; 
         // Poznámka: currentHitPoints se nastaví v Initialize() na hodnotu maxHitPoints
         
-        maxMovementBudget = 3; // Pomalý
-        attackBonus = 8; 
+        maxMovementBudget = 2; // Pomalý
+        attackBonus = 5; 
         
         // Nastavení pro základní útok (používá base.Attack)
         // 2d10 (Pseudopod Slam)
-        damageDice = 2; 
-        damageDie = 10;
+        damageDice = 1; 
+        damageDie = 8;
         
-        specialAbilityDescription = $"Adhesive Skin: Melee attackers take {ADHESIVE_DAMAGE} dmg. Acid Eruption: 3d6 AOE (CD: {ACID_MAX_COOLDOWN}).";
+        specialAbilityDescription = $"Adhesive Skin: Melee attackers take {ADHESIVE_DAMAGE} dmg. Acid Eruption: 2d6 AOE (CD: {ACID_MAX_COOLDOWN}).";
     }
 
     // --- 1. ODPOČET COOLDOWNU (Voláno z TurnAndUnitsManager) ---
@@ -119,7 +119,7 @@ public class EnemiesMimic : BattleUnit
             if (victim == this) continue;
 
             // Hod na poškození kyselinou: 4d6
-            int acidDamage = DiceRollManager.Instance.Roll(6, 3); 
+            int acidDamage = DiceRollManager.Instance.Roll(6, 2); 
             
             // Informační text nad obětí (damage číslo se zobrazí v takeDamage automaticky červeně)
             victim.ShowFloatingText("Acid Burn", new Color(0.7f, 1f, 0f));

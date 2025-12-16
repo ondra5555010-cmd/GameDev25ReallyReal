@@ -10,8 +10,12 @@ public class EnemiesSkelleton : BattleUnit
 
     private void Awake()
     {
+        maxHitPoints = 13;
+        armorClass = 12;
+        damageDie = 6;
+        attackBonus = 2;
         maxMovementBudget = 4;
-        unitName = "Skelleton";
+        unitName = "Skeleton";
     }
 
     void Update()
