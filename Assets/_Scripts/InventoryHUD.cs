@@ -9,7 +9,7 @@ public class InventoryHUD : MonoBehaviour
     
     void Awake()
     {
-        GameSession.hasDungeonKey = true;
+        //GameSession.hasDungeonKey = true;
     }
     void Update()
     {
