@@ -51,6 +51,7 @@ public class HeroesCleric : BattleUnit
         if (target == null || !isActionReady) return;
 
         isActionReady = false;
+        ShowFloatingText($"Cure Wounds", Color.cyan);
 
         // Roll 1d8 healing
         int healAmount = DiceRollManager.Instance.Roll(8);

@@ -12,4 +12,5 @@
             <ui:Label text="Label" name="unit_mp" style="font-size: 36px; -unity-text-align: lower-left; display: flex; color: rgb(255, 255, 255); -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0);" />
         </ui:VisualElement>
     </ui:VisualElement>
+    <ui:Label text="YOUR TURN, PRESS &lt;SPACEBAR&gt; TO END" name="player_turn_signal" style="-unity-text-align: upper-center; font-size: 20px; color: rgb(255, 255, 255); -unity-text-outline-width: 1px;" />
 </ui:UXML>

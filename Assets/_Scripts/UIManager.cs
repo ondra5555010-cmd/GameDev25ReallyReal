@@ -16,6 +16,9 @@ public class UIManager : MonoBehaviour
     private VisualElement selectedUnitDisplay;
     public VisualTreeAsset playerUnitTemplate;
 
+    public bool isActive = true;
+    private Label playerTurnSignal;
+
     [Header("Floating Text")]
     public GameObject floatingTextPrefab;
     public float displayDelay = 5f;
@@ -53,6 +56,7 @@ public class UIManager : MonoBehaviour
         playerUnitsContainer   = root.Q<VisualElement>("player_units_display");
         computerUnitsContainer = root.Q<VisualElement>("computer_units_display");
         selectedUnitDisplay = root.Q<VisualElement>("selected_unit_display");
+        playerTurnSignal = root.Q<Label>("player_turn_signal");
         
         selectedAbilityDescription = selectedUnitDisplay.Q<Label>("special_ability_description");
         selectedName = selectedUnitDisplay.Q<Label>("unit_name");
@@ -81,20 +85,26 @@ public class UIManager : MonoBehaviour
         if (winScreenPanel != null) winScreenPanel.SetActive(true);
         
         // Vypneme UI Toolkit interakci, aby se nepletla
-        root.style.display = DisplayStyle.None; 
+        LockUI();
+        HidePlayerUI();
+        isActive = false;
     }
 
     public void ShowLoseScreen()
     {
         if (loseScreenPanel != null) loseScreenPanel.SetActive(true);
-        root.style.display = DisplayStyle.None;
+        LockUI();
+        HidePlayerUI();
+        isActive = false;
     }
 
     public void ShowEndingScreen(string message)
     {
         if (lootText != null) lootText.text = message;
         if (endingScreenPanel != null) endingScreenPanel.SetActive(true);
-        root.style.display = DisplayStyle.None;
+        LockUI();
+        HidePlayerUI();
+        isActive = false;
     }
 
     // --- METODY PRO TLAČÍTKA (Přiřadíte v Inspectoru na OnClick) ---
@@ -234,5 +244,33 @@ public class UIManager : MonoBehaviour
     {
         selectedUnitDisplay.style.display = DisplayStyle.None;
     }
+    
+    private bool uiLocked = false;
 
+    public void LockUI()
+    {
+        uiLocked = true;
+        root.style.display = DisplayStyle.None;
+    }
+
+    public void ShowPlayerUI()
+    {
+        if (uiLocked) return;
+        root.style.display = DisplayStyle.Flex;
+    }
+
+    public void HidePlayerUI()
+    {
+        root.style.display = DisplayStyle.None;
+    }
+    
+    public void ShowPlayerTurnSignal()
+    {
+        playerTurnSignal.style.display = DisplayStyle.Flex;
+    }
+
+    public void HidePlayerTurnSignal()
+    {
+        playerTurnSignal.style.display = DisplayStyle.None;
+    }
 }

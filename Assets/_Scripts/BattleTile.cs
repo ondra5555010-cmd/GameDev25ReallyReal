@@ -91,9 +91,7 @@ public class BattleTile : MonoBehaviour
     
     public void OnMouseDown()
     {
-        if (!TurnAndUnitsManager.Instance.isPlayerTurn) return;
-        
-        if (BattleGrid.Instance.isAnimating)
+        if (!BattleGrid.Instance.PlayerInputAllowed)
         {
             return;
         }
@@ -182,6 +180,7 @@ public class BattleTile : MonoBehaviour
         unit.transform.position = to;
         
         targetTile.AssignUnit(unit);
+        unit.RefreshUI();
     }
     
     public bool IsHostileTile()
@@ -193,14 +192,13 @@ public class BattleTile : MonoBehaviour
     
     private void ApplyColorState()
     {
-        bool playerTurn = TurnAndUnitsManager.Instance.isPlayerTurn;
-
         // If it's not player turn, always revert to original color
-        if (!playerTurn)
+        if (!TurnAndUnitsManager.Instance.isPlayerTurn)
         {
             tileRenderer.material.color = originalColor;
             return;
         }
+
 
         // If tile contains the selected unit, always highlight
         var selected = UnitSelectionManager.Instance.selectedUnit;

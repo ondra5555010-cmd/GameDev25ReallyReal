@@ -115,9 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095c4771c6a681a408add8dc442fcb2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  lifetime: 4
-  floatSpeed: 2
-  initialOffset: {x: 0, y: 2, z: 0}
+  lifetime: 2.5
+  floatSpeed: 3
   faceCamera: 1
 --- !u!1 &1984257991863440956
 GameObject:
