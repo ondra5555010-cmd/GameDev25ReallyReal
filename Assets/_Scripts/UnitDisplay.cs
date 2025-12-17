@@ -6,6 +6,8 @@ public class UnitDisplay
     private VisualElement container;
     private Label unitNameLabel;
     private Label unitHpLabel;
+
+    // Movement / action UI currently disabled
     private Label movementLabel;
     private Label actionLabel;
 
@@ -14,17 +16,17 @@ public class UnitDisplay
 
     public UnitDisplay(VisualElement root, BattleUnit unit)
     {
-        container      = root.Q<VisualElement>("container");
-        unitNameLabel  = root.Q<Label>("unit_name");
-        unitHpLabel    = root.Q<Label>("unit_hp");
-        movementLabel  = root.Q<Label>("movement_points");
-        actionLabel    = root.Q<Label>("action");
+        container     = root.Q<VisualElement>("container");
+        unitNameLabel = root.Q<Label>("unit_name");
+        unitHpLabel   = root.Q<Label>("unit_hp");
 
-        // Player-only visibility
-        bool isPlayer = unit.playerControlled;
+        movementLabel = root.Q<Label>("movement_points");
+        actionLabel   = root.Q<Label>("action");
 
-        movementLabel.style.display = isPlayer ? DisplayStyle.Flex : DisplayStyle.None;
-        actionLabel.style.display   = isPlayer ? DisplayStyle.Flex : DisplayStyle.None;
+        // Force invisibility for everyone
+        
+        movementLabel.style.display = DisplayStyle.None;
+        actionLabel.style.display   = DisplayStyle.None;
 
         // Hover / click forwarding
         container.RegisterCallback<MouseEnterEvent>(_ =>
@@ -62,16 +64,15 @@ public class UnitDisplay
                                   ratio > 0.3f ? Color.yellow :
                                   Color.red;
 
-        // Player-only info
-        if (unit.playerControlled)
-        {
-            movementLabel.text = $"{unit.movementBudget} MP";
-            actionLabel.text   = unit.isActionReady ? "Action: READY" : "Action: USED";
+        // Movement / action UI intentionally disabled
+        /*
+        movementLabel.text = $"{unit.movementBudget} MP";
+        actionLabel.text   = unit.isActionReady ? "Action: READY" : "Action: USED";
 
-            actionLabel.style.color = unit.isActionReady
-                ? Color.cadetBlue
-                : Color.orange;
-        }
+        actionLabel.style.color = unit.isActionReady
+            ? Color.cadetBlue
+            : Color.orange;
+        */
     }
 
     public void SetHighlight()
