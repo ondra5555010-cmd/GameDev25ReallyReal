@@ -6,7 +6,7 @@ public class SimpleSplashController : MonoBehaviour
 {
     [Header("Settings")]
     [Tooltip("Název scény s hlavním menu")]
-    public string sceneToLoad = "MainMenuScene";
+    [SerializeField] private string sceneToLoad = "MainMenuScene";
     
     [Tooltip("Celková doba trvání splash screenu (musí odpovídat délce animace)")]
     public float totalDuration = 3.0f;
